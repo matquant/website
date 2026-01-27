@@ -1,4 +1,3 @@
-import React from 'react';
 import { testimonials } from '../data/content';
 import { Section } from './ui/Section';
 import { Card } from './ui/Card';

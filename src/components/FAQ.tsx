@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { faqs } from '../data/content';
 import { Section } from './ui/Section';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
