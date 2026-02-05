@@ -18,16 +18,9 @@ export const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
-        <div className="flex items-center gap-3 group cursor-pointer">
-          <div className="relative w-8 h-8 flex items-center justify-center">
-            <div className="absolute inset-0 bg-primary/20 rotate-45 rounded-sm group-hover:rotate-90 transition-transform duration-500"></div>
-            <div className="absolute inset-2 bg-primary rounded-sm rotate-45"></div>
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-bold text-xl tracking-wider font-mono">MICHIGAN</span>
-            <span className="text-xs text-primary tracking-[0.3em] font-bold">ALGORITHMIC TRADER</span>
-          </div>
-        </div>
+        <a href="#" className="flex items-center gap-3 group">
+          <img src="/MainLogo.png" alt="Michigan Algorithmic Traders" className="h-10 w-10 object-contain" />
+        </a>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-1">

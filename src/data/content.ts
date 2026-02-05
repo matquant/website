@@ -110,10 +110,19 @@ export const testimonials = [
 
 export const pricingPlans = []; // Removed
 
+export const partners = [
+  {
+    name: 'QuantConnect',
+    url: 'https://www.quantconnect.com',
+    logo: '/partners/quantconnect.png',
+    logoFallback: 'https://cdn.simpleicons.org/quantconnect/00ff94',
+  },
+];
+
 export const faqs = [
   {
     question: 'Who is MAT?',
-    answer: 'Michigan Algorithmic Trader (MAT) is a student-run organization at the University of Michigan dedicated to quantitative finance, algorithmic trading, and market research. We build tools, conduct research, and compete in trading competitions.'
+    answer: 'Michigan Algorithmic Traders (MAT) is a student-run organization dedicated to quantitative finance, algorithmic trading, and market research. We build tools, conduct research, and compete in trading competitions.'
   },
   {
     question: 'What do I need to use MAT tools?',

@@ -30,11 +30,11 @@ export const Hero = () => {
             <h1 className="text-5xl md:text-7xl font-bold leading-none tracking-tight">
               MICHIGAN <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">ALGORITHMIC</span> <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-glow">TRADER</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-glow">TRADERS</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted max-w-lg leading-relaxed border-l-2 border-primary/30 pl-6">
-              The University of Michigan's premier quantitative finance and algorithmic trading organization.
+              The premier quantitative finance and algorithmic trading organization.
               <span className="text-white"> Research. Build. Compete.</span>
             </p>
             
@@ -44,9 +44,9 @@ export const Hero = () => {
                   Join Now <ArrowRight size={16} />
                 </Button>
               </a>
-              <Button size="lg" variant="secondary">
-                Read Research
-              </Button>
+              {/*<Button size="lg" variant="secondary">*/}
+              {/*  Read Research*/}
+              {/*</Button>*/}
             </div>
           </div>
 
