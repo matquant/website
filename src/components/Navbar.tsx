@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, BookOpen } from 'lucide-react';
+import { Menu, X, BookOpen } from 'lucide-react';
 import { navLinks } from '../data/content';
 import { Button } from './ui/Button';
 

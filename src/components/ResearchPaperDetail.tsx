@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ArrowLeft, Download, User } from 'lucide-react';
 import { Button } from './ui/Button';
 import { TradingViewTechnicalAnalysis } from './ui/TerminalWidgets';

@@ -1,35 +1,24 @@
-import { Section } from './ui/Section';
 import { partners } from '../data/content';
+import { Section } from './ui/Section';
 
 export const Partners = () => {
   return (
-    <Section id="partners" className="border-t border-white/5 py-40">
-      <div className="flex flex-col items-center gap-24">
-        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase text-center">
-          Partners
-        </h2>
-        
-        <div className="flex flex-wrap justify-center items-center gap-24 md:gap-40">
+    <Section className="py-20 border-y border-white/5 bg-white/[0.01]">
+      <div className="flex flex-col items-center gap-12">
+        <span className="text-xl font-mono text-muted uppercase tracking-[0.5em] font-bold">PARTNERS</span>
+        <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
           {partners.map((partner) => (
             <a
               key={partner.name}
               href={partner.url}
               target="_blank"
-              rel="noopener noreferrer sponsored"
-              className="group flex items-center justify-center grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-700"
-              title={partner.name}
+              rel="noopener noreferrer"
+              className="group transition-all duration-500"
             >
               <img
                 src={partner.logo}
-                alt={`${partner.name} logo`}
-                className="h-20 md:h-28 w-auto object-contain max-w-[320px] filter brightness-0 invert opacity-80 group-hover:filter-none group-hover:opacity-100 transition-all duration-500"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (partner.logoFallback && !target.dataset.fallbackUsed) {
-                    target.dataset.fallbackUsed = 'true';
-                    target.src = partner.logoFallback;
-                  }
-                }}
+                alt={partner.name}
+                className="h-12 md:h-16 opacity-40 group-hover:opacity-100 group-hover:scale-110 brightness-0 invert transition-all duration-500"
               />
             </a>
           ))}

@@ -1,6 +1,6 @@
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
-import { ArrowRight, ChevronDown, BookOpen } from 'lucide-react';
+import { ChevronDown, BookOpen } from 'lucide-react';
 import { Terminal } from './ui/Terminal';
 import { PlexusBackground } from './ui/PlexusBackground';
 

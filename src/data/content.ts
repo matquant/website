@@ -60,8 +60,7 @@ export const partners = [
   {
     name: 'QuantConnect',
     url: 'https://www.quantconnect.com',
-    logo: '/partners/quantconnect.png',
-    logoFallback: 'https://cdn.simpleicons.org/quantconnect/00ff94',
+    logo: 'https://cdn.quantconnect.com/web/i/about/our-purpose/cta-section/cta-logo.svg',
   },
 ];
 

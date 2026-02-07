@@ -1,8 +1,6 @@
-import React from 'react';
 import { Section } from './ui/Section';
 import { Card } from './ui/Card';
-import { Button } from './ui/Button';
-import { FileText, ExternalLink, ArrowLeft, Terminal, ArrowRight } from 'lucide-react';
+import { Terminal, ArrowRight, ArrowLeft } from 'lucide-react';
 import { RESEARCH_PAPERS } from '../data/papers';
 
 export const ResearchPage = ({ onBack, onSelectPaper }: { onBack: () => void, onSelectPaper: (id: string) => void }) => {
