@@ -15,14 +15,14 @@ export const FAQ = () => {
         <div className="md:col-span-4">
           <div className="sticky top-24">
             <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-              CLUB <br />
-              <span className="text-muted font-mono text-3xl md:text-5xl opacity-50">INFO</span>
+              FAQ <br />
+              <span className="text-muted font-mono text-3xl md:text-5xl opacity-50">KNOWLEDGE_BASE</span>
             </h2>
             <div className="h-1 w-24 bg-gradient-to-r from-primary to-transparent mt-4"></div>
             <div className="mt-8 p-6 bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm">
                <HelpCircle className="text-primary mb-4" size={32} />
                <p className="text-muted text-sm leading-relaxed">
-                 Can't find the answer you're looking for? Reach out to our board members or join our recruitment events.
+                 Can't find the answer you're looking for? Reach out to our research board for specific quantitative inquiries.
                </p>
             </div>
           </div>
@@ -61,13 +61,6 @@ export const FAQ = () => {
           ))}
         </div>
       </div>
-      
-      <a href="https://discord.gg/83J9ZRUKB6" target="_blank" rel="noopener noreferrer" className="mt-40 text-center relative group cursor-pointer block">
-        <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-        <h2 className="relative z-10 text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/0 uppercase tracking-tighter group-hover:from-primary/50 group-hover:to-transparent transition-all duration-500">
-          Join Now
-        </h2>
-      </a>
     </Section>
   );
 };

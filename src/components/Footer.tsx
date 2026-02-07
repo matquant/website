@@ -12,25 +12,16 @@ export const Footer = () => {
             <img src="/MainLogo.png" alt="Michigan Algorithmic Traders" className="h-12 w-12 object-contain" />
           </div>
           <p className="text-muted text-xs font-mono max-w-xs text-center md:text-left">
-            QUANT CLUB @ U-M <br/>
-            EST. 2025
+            QUANT CLUB @ U-M
           </p>
         </div>
         
         <div className="flex gap-12 font-mono text-xs tracking-wider">
-          {/*<a href="#" className="text-muted hover:text-primary transition-colors uppercase relative group">*/}
-          {/*  Instagram*/}
-          {/*  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full"></span>*/}
-          {/*</a>*/}
-          <a href="https://discord.gg/83J9ZRUKB6" className="text-muted hover:text-primary transition-colors uppercase relative group">
-            Discord
-            <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full"></span>
-          </a>
+          {/* Footer Navigation or other links can go here */}
         </div>
 
         <div className="text-muted text-xs text-center md:text-right font-mono">
           <p>&copy; {new Date().getFullYear()} Michigan Algorithmic Traders</p>
-          <p className="opacity-50">made with {"<"}3</p>
         </div>
       </div>
     </footer>

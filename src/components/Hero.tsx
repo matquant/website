@@ -1,10 +1,13 @@
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, BookOpen } from 'lucide-react';
+import { Terminal } from './ui/Terminal';
+import { PlexusBackground } from './ui/PlexusBackground';
 
-export const Hero = () => {
+export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
   return (
-    <div className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <div className="relative min-h-screen flex items-center pt-32 overflow-hidden">
+      <PlexusBackground />
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Animated Orbs */}
@@ -22,11 +25,6 @@ export const Hero = () => {
       <Section className="relative z-10 w-full">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-              EST. 2025 // UMich
-            </div>
-            
             <h1 className="text-5xl md:text-7xl font-bold leading-none tracking-tight">
               MICHIGAN <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">ALGORITHMIC</span> <br />
@@ -34,66 +32,19 @@ export const Hero = () => {
             </h1>
             
             <p className="text-lg md:text-xl text-muted max-w-lg leading-relaxed border-l-2 border-primary/30 pl-6">
-              The premier quantitative finance and algorithmic trading organization.
+              A quantitative finance and algorithmic trading organization.
               <span className="text-white"> Research. Build. Compete.</span>
             </p>
             
-            <div className="flex flex-wrap gap-4">
-              <a href="https://discord.gg/83J9ZRUKB6" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="primary">
-                  Join Now <ArrowRight size={16} />
-                </Button>
-              </a>
-              {/*<Button size="lg" variant="secondary">*/}
-              {/*  Read Research*/}
-              {/*</Button>*/}
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button onClick={onViewResearch} size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-primary transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-primary/40 group">
+                View Research <BookOpen className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
 
           <div className="relative">
-            {/* Holographic Card Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-20 animate-pulse"></div>
-            
-            <div className="relative bg-surface/80 backdrop-blur-xl border border-white/10 p-8 rounded-2xl overflow-hidden">
-              {/* Scanline */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary/30 shadow-[0_0_15px_rgba(0,255,148,0.5)] animate-[scan_3s_linear_infinite]"></div>
-              
-              <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
-                <h3 className="text-xl font-bold font-mono text-primary flex items-center gap-2">
-                  <span className="text-xs bg-primary text-black px-1 rounded">MAT</span>
-                  RESEARCH_CORE
-                </h3>
-                <div className="flex gap-2">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                </div>
-              </div>
-              
-              <div className="space-y-6 text-muted font-mono text-sm leading-relaxed">
-                <p>
-                  <span className="text-primary mr-2">&gt;</span>
-                  Quantitative market analysis & modeling...
-                </p>
-                <p>
-                  <span className="text-primary mr-2">&gt;</span>
-                  Student-led research & software development...
-                </p>
-                <p>
-                  <span className="text-primary mr-2">&gt;</span>
-                  <span className="text-white">Status:</span> Recruiting for winter 2026.
-                </p>
-                <div className="p-4 bg-black/40 rounded border border-white/5 mt-4">
-                  <div className="flex justify-between text-xs mb-2">
-                    <span>SEMESTER_PROGRESS</span>
-                    <span className="text-primary">45%</span>
-                  </div>
-                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-primary w-[45%] shadow-[0_0_10px_rgba(0,255,148,0.5)]"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Terminal />
           </div>
         </div>
       </Section>

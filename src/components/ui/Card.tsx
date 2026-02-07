@@ -6,17 +6,22 @@ interface CardProps {
   className?: string;
   hoverEffect?: boolean;
   noPadding?: boolean;
+  onClick?: () => void;
 }
 
 export const Card: React.FC<CardProps> = ({ 
   children, 
   className = '',
   hoverEffect = true,
-  noPadding = false
+  noPadding = false,
+  onClick
 }) => {
   return (
-    <div className={`
+    <div 
+      onClick={onClick}
+      className={`
       relative bg-surface/40 backdrop-blur-sm border border-white/5 rounded-xl overflow-hidden
+      ${onClick ? 'cursor-pointer' : ''}
       ${hoverEffect ? 'hover:border-primary/30 hover:shadow-glow hover:bg-surface/60 transition-all duration-500 group' : ''} 
       ${noPadding ? 'p-0' : 'p-6'}
       ${className}
