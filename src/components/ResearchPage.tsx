@@ -1,4 +1,3 @@
-import { Section } from './ui/Section';
 import { Card } from './ui/Card';
 import { Terminal, ArrowRight, ArrowLeft } from 'lucide-react';
 import { RESEARCH_PAPERS } from '../data/papers';
