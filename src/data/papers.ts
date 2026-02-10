@@ -21,7 +21,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     author: "MAT Quant Division",
     description: "A deep dive into signal latency and false-positive frequencies in SMA vs EMA systems.",
     abstract: "This report investigates the efficacy of simple (SMA) versus exponential (EMA) moving average crossover systems. By reproducing historical performance metrics on high-beta equities, we examine the trade-offs between signal latency and false-positive frequencies in trending versus mean-reverting regimes.",
-    imageUrl: "https://pbs.twimg.com/media/ERcu2HUUUAEFwPQ.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Lissage_sinus_bruite_moyenne_glissante.svg/250px-Lissage_sinus_bruite_moyenne_glissante.svg.png",
     content: [
       {
         sectionTitle: "1. Introduction",
