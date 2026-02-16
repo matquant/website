@@ -1,35 +1,41 @@
 import { useMemo } from 'react';
 
 export const HRPChart = () => {
-  const width = 600;
-  const height = 400;
-  const padding = 50;
+  const width = 800;
+  const height = 450;
+  const paddingX = 80;
+  const paddingY = 60;
 
-  // Simple dendrogram structure
+  // Famous HRP Dendrogram (Orthogonal lines)
   const treeLines = useMemo(() => {
-    const lines = [];
-    const bottomY = height - padding;
-    const topY = padding;
-    const centerX = width / 2;
-    
-    // Root to two main clusters
-    lines.push({ x1: centerX, y1: topY, x2: centerX - 150, y2: topY + 80 });
-    lines.push({ x1: centerX, y1: topY, x2: centerX + 150, y2: topY + 80 });
-    
-    // Left cluster bisection
-    lines.push({ x1: centerX - 150, y1: topY + 80, x2: centerX - 220, y2: topY + 180 });
-    lines.push({ x1: centerX - 150, y1: topY + 80, x2: centerX - 80, y2: topY + 180 });
-    
-    // Right cluster bisection
-    lines.push({ x1: centerX + 150, y1: topY + 80, x2: centerX + 80, y2: topY + 180 });
-    lines.push({ x1: centerX + 150, y1: topY + 80, x2: centerX + 220, y2: topY + 180 });
-    
-    // Leaf connections (simplified)
-    const leafs = [-250, -190, -110, -50, 50, 110, 190, 250];
-    leafs.forEach((offset, i) => {
-      const parentX = i < 4 ? (i < 2 ? centerX - 220 : centerX - 80) : (i < 6 ? centerX + 80 : centerX + 220);
-      const parentY = topY + 180;
-      lines.push({ x1: parentX, y1: parentY, x2: centerX + offset, y2: bottomY });
+    const lines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+    const top = paddingY;
+    const bottom = height - paddingY;
+    const center = width / 2;
+
+    // Root Level
+    const level1Y = top + 60;
+    lines.push({ x1: center - 200, y1: top, x2: center + 200, y2: top }); // horizontal top
+    lines.push({ x1: center - 200, y1: top, x2: center - 200, y2: level1Y }); // vertical left
+    lines.push({ x1: center + 200, y1: top, x2: center + 200, y2: level1Y }); // vertical right
+
+    // Level 2 Left
+    const level2Y = level1Y + 80;
+    lines.push({ x1: center - 300, y1: level1Y, x2: center - 100, y2: level1Y }); // horizontal
+    lines.push({ x1: center - 300, y1: level1Y, x2: center - 300, y2: level2Y }); // vertical
+    lines.push({ x1: center - 100, y1: level1Y, x2: center - 100, y2: level2Y }); // vertical
+
+    // Level 2 Right
+    lines.push({ x1: center + 100, y1: level1Y, x2: center + 300, y2: level1Y }); // horizontal
+    lines.push({ x1: center + 100, y1: level1Y, x2: center + 100, y2: level2Y }); // vertical
+    lines.push({ x1: center + 300, y1: level1Y, x2: center + 300, y2: level2Y }); // vertical
+
+    // Leaf nodes connections (8 clusters)
+    const leafOffsets = [-350, -250, -150, -50, 50, 150, 250, 350];
+    leafOffsets.forEach((offset, i) => {
+      const parentX = i < 2 ? center - 300 : (i < 4 ? center - 100 : (i < 6 ? center + 100 : center + 300));
+      lines.push({ x1: parentX - 25, y1: level2Y, x2: parentX + 25, y2: level2Y }); // small horizontal
+      lines.push({ x1: center + offset, y1: level2Y, x2: center + offset, y2: bottom }); // final vertical to leaf
     });
 
     return lines;
@@ -37,24 +43,19 @@ export const HRPChart = () => {
 
   return (
     <div className="w-full h-full bg-black/40 relative overflow-hidden flex items-center justify-center">
-      <div className="absolute top-3 left-4 font-mono text-[8px] text-primary/40 uppercase tracking-[0.4em] z-10">
-        // HRP_RECURSIVE_BISECTION_TREE
+      <div className="absolute top-2 left-3 font-mono text-[8px] text-primary/60 uppercase tracking-[0.4em] z-10">
+        // HRP_QUASI_DIAGONALIZATION_TREE
       </div>
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-[85%] h-[85%] overflow-visible">
-        {/* Glow effect for the tree */}
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-110">
         <defs>
-          <filter id="treeGlow">
-            <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          <filter id="hrpGlow">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
-        {/* Tree Branches */}
-        <g filter="url(#treeGlow)">
+        <g filter="url(#hrpGlow)">
           {treeLines.map((line, i) => (
             <line
               key={i}
@@ -62,49 +63,40 @@ export const HRPChart = () => {
               y1={line.y1}
               x2={line.x2}
               y2={line.y2}
-              className="stroke-primary"
-              strokeWidth="2"
-              strokeLinecap="round"
-              opacity={0.6}
+              stroke="currentColor"
+              strokeWidth="2.5"
+              className="text-primary/80"
+              strokeLinecap="square"
             />
           ))}
         </g>
 
-        {/* Nodes */}
-        <g>
+        {/* Junction Nodes */}
+        <g fill="white">
+          <circle cx={width/2} cy={paddingY} r="4" className="fill-primary" />
           {treeLines.map((line, i) => (
-            <circle
-              key={`node-start-${i}`}
-              cx={line.x1}
-              cy={line.y1}
-              r="3"
-              className="fill-white"
-            />
-          ))}
-          {/* Leaf nodes */}
-          {[-250, -190, -110, -50, 50, 110, 190, 250].map((offset, i) => (
-            <circle
-              key={`leaf-${i}`}
-              cx={width / 2 + offset}
-              cy={height - padding}
-              r="4"
-              className="fill-primary"
-            />
+            <circle key={i} cx={line.x1} cy={line.y1} r="2" fillOpacity="0.5" />
           ))}
         </g>
 
-        {/* Decorative Grid Lines (faint) */}
-        <g opacity="0.05" stroke="white" strokeWidth="1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <line key={i} x1="0" y1={(height / 4) * i} x2={width} y2={(height / 4) * i} />
+        {/* Leaf Nodes */}
+        {[-350, -250, -150, -50, 50, 150, 250, 350].map((offset, i) => (
+          <g key={i} transform={`translate(${width / 2 + offset}, ${height - paddingY})`}>
+            <circle r="5" className="fill-primary shadow-glow" />
+            <rect x="-1" y="5" width="2" height="15" className="fill-primary/20" />
+          </g>
+        ))}
+        
+        {/* Background Grid */}
+        <g opacity="0.03" stroke="white" strokeWidth="1">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <line key={i} x1={(width / 12) * i} y1="0" x2={(width / 12) * i} y2={height} />
           ))}
         </g>
       </svg>
-      
-      {/* Legend / Status */}
-      <div className="absolute bottom-4 right-6 text-right font-mono text-[8px] text-muted space-y-1">
-        <div>CLUSTERING: WARD_LINKAGE</div>
-        <div>STABILITY_INDEX: 0.94</div>
+
+      <div className="absolute bottom-2 right-3 font-mono text-[7px] text-muted tracking-tighter uppercase opacity-50">
+        Recursive_Bisection_v4.2 // Institutional_Grade
       </div>
     </div>
   );
