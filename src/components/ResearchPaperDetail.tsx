@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { ArrowLeft, Download, User } from 'lucide-react';
 import { Button } from './ui/Button';
 import { TradingViewTechnicalAnalysis } from './ui/TerminalWidgets';
+import { BNNChart } from './ui/BNNChart';
 import { RESEARCH_PAPERS } from '../data/papers';
+import { useLocalPapers } from '../hooks/useLocalPapers';
 
 interface PaperDetailProps {
   id: string;
@@ -10,7 +12,8 @@ interface PaperDetailProps {
 }
 
 export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
-  const paper = RESEARCH_PAPERS.find(p => p.id === id);
+  const { localPapers } = useLocalPapers();
+  const paper = [...localPapers, ...RESEARCH_PAPERS].find(p => p.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,7 +54,11 @@ export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
           <div className="h-[1px] w-full bg-gradient-to-r from-primary/30 to-transparent mt-8"></div>
         </header>
 
-        {paper.imageUrl && (
+        {paper.id === 'bnn-meta-labeling-2026' ? (
+          <div className="mb-16">
+            <BNNChart />
+          </div>
+        ) : paper.imageUrl && (
           <div className="mb-16 rounded-lg overflow-hidden border border-white/10 bg-white/5 p-1">
             <img src={paper.imageUrl} alt="Research Visual" className="w-full h-auto rounded shadow-2xl" />
           </div>
@@ -80,7 +87,11 @@ export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
                   <p key={pIdx} className="mb-4 text-gray-400 leading-relaxed">{p}</p>
                 ))}
                 
-                {section.chartSymbol && (
+                {section.chartSymbol === 'BNN_VISUAL' ? (
+                  <div className="my-10">
+                    <BNNChart />
+                  </div>
+                ) : section.chartSymbol && (
                   <div className="my-10 rounded-lg overflow-hidden border border-white/10">
                     <TradingViewTechnicalAnalysis symbol={section.chartSymbol} />
                   </div>

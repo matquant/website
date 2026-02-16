@@ -61,5 +61,23 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       <h2 class="text-xl font-bold mb-4 font-sans border-b border-white/10 pb-2">3. Conclusion</h2>
       <p class="mb-4 leading-relaxed text-gray-400">Summarize findings and potential strategy applications.</p>
     `
+  },
+  {
+    id: "bnn-meta-labeling-2026",
+    title: "Bayesian Neural Network Meta-Labeling [IN PROGRESS]",
+    author: "MAT Quant Division",
+    description: "Probabilistic filtering of SMA crossovers using BNNs for uncertainty quantification.",
+    abstract: "This strategy utilizes a secondary Bayesian Neural Network (BNN) acting as a binary filter to determine trade execution based on probabilistic certainty, grounding the Meta-Labeling framework established by Marcos López de Prado.",
+    imageUrl: "/researcher_toolkit/Paper.html", // Using the HTML visual path as reference
+    content: [
+      {
+        sectionTitle: "BNN Uncertainty Analysis",
+        paragraphs: [
+          "The primary model generates directional signals, while a secondary Bayesian Neural Network (BNN) acts as a sophisticated binary filter to determine trade execution based on probabilistic certainty.",
+          "The BNN's predictive variance directly dictates capital allocation, effectively 'leaning in' to high-confidence trends while minimizing exposure during high-uncertainty periods."
+        ],
+        chartSymbol: "BNN_VISUAL"
+      }
+    ]
   }
 ];
