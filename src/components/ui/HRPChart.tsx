@@ -4,35 +4,29 @@ export const HRPChart = () => {
   const width = 800;
   const height = 500;
   
-  // Clean, high-impact dendrogram data
-  const lines = useMemo(() => {
+  const treeData = useMemo(() => {
     const l = [];
     const centerX = width / 2;
-    const top = 50;
-    const bottom = height - 50;
+    const top = 60;
+    const bottom = height - 80;
     
-    // Main branches (Level 0 -> Level 1)
-    l.push({ x1: centerX - 250, y1: top, x2: centerX + 250, y2: top }); // horizontal
-    l.push({ x1: centerX - 250, y1: top, x2: centerX - 250, y2: top + 100 }); // left vertical
-    l.push({ x1: centerX + 250, y1: top, x2: centerX + 250, y2: top + 100 }); // right vertical
+    // Level 0 to Level 1
+    l.push({ x1: centerX - 200, y1: top, x2: centerX + 200, y2: top }); // horizontal
+    l.push({ x1: centerX - 200, y1: top, x2: centerX - 200, y2: top + 80 }); // left
+    l.push({ x1: centerX + 200, y1: top, x2: centerX + 200, y2: top + 80 }); // right
     
-    // Level 1 -> Level 2 (Left)
-    l.push({ x1: centerX - 350, y1: top + 100, x2: centerX - 150, y2: top + 100 });
-    l.push({ x1: centerX - 350, y1: top + 100, x2: centerX - 350, y2: top + 200 });
-    l.push({ x1: centerX - 150, y1: top + 100, x2: centerX - 150, y2: top + 200 });
+    // Level 1 to Level 2
+    [centerX - 200, centerX + 200].forEach(x => {
+      l.push({ x1: x - 100, y1: top + 80, x2: x + 100, y2: top + 80 });
+      l.push({ x1: x - 100, y1: top + 80, x2: x - 100, y2: top + 160 });
+      l.push({ x1: x + 100, y1: top + 80, x2: x + 100, y2: top + 160 });
+    });
 
-    // Level 1 -> Level 2 (Right)
-    l.push({ x1: centerX + 150, y1: top + 100, x2: centerX + 350, y2: top + 100 });
-    l.push({ x1: centerX + 150, y1: top + 100, x2: centerX + 150, y2: top + 200 });
-    l.push({ x1: centerX + 350, y1: top + 100, x2: centerX + 350, y2: top + 200 });
-
-    // Level 2 -> Leafs
-    const leafTopY = top + 200;
-    
-    [centerX-350, centerX-150, centerX+150, centerX+350].forEach(px => {
-        l.push({ x1: px - 40, y1: leafTopY, x2: px + 40, y2: leafTopY });
-        l.push({ x1: px - 40, y1: leafTopY, x2: px - 40, y2: bottom });
-        l.push({ x1: px + 40, y1: leafTopY, x2: px + 40, y2: bottom });
+    // Level 2 to Leafs (8 Assets)
+    [centerX-300, centerX-100, centerX+100, centerX+300].forEach(x => {
+      l.push({ x1: x - 50, y1: top + 160, x2: x + 50, y2: top + 160 });
+      l.push({ x1: x - 50, y1: top + 160, x2: x - 50, y2: bottom });
+      l.push({ x1: x + 50, y1: top + 160, x2: x + 50, y2: bottom });
     });
 
     return l;
@@ -40,37 +34,36 @@ export const HRPChart = () => {
 
   return (
     <div className="w-full h-full bg-[#050505] relative overflow-hidden flex items-center justify-center border border-white/5">
-      <div className="absolute top-4 left-4 font-mono text-[10px] text-primary/80 uppercase tracking-[0.5em] z-10">
-        // HRP_RECURSIVE_DIAGONALIZATION
+      <div className="absolute top-4 left-5 font-mono text-[9px] text-primary/40 uppercase tracking-[0.4em] z-10">
+        // HRP_RECURSIVE_STRUCTURE
       </div>
 
-      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-100 p-8">
-        <g stroke="currentColor" strokeWidth="3" fill="none" className="text-primary">
-          {lines.map((line, i) => (
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full p-12">
+        {/* Static, high-contrast tree lines */}
+        <g stroke="white" strokeWidth="2.5" fill="none" opacity="0.8">
+          {treeData.map((line, i) => (
             <line key={i} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} strokeLinecap="square" />
           ))}
         </g>
 
-        {/* Junction points */}
-        <g className="fill-white">
-            <circle cx={width/2} cy={50} r="5" />
-            <circle cx={width/2-250} cy={150} r="4" />
-            <circle cx={width/2+250} cy={150} r="4" />
+        {/* Junction nodes */}
+        <g fill="white">
+          <circle cx={width/2} cy={60} r="5" className="fill-primary" />
+          {[width/2-200, width/2+200].forEach((x, i) => (
+            <circle key={i} cx={x} cy={140} r="4" />
+          ))}
         </g>
 
-        {/* Assets (Leafs) */}
-        <g className="fill-primary">
-            {[width/2-390, width/2-310, width/2-190, width/2-110, width/2+110, width/2+190, width/2+310, width/2+390].map((x, i) => (
-                <rect key={i} x={x-5} y={height-60} width="10" height="20" rx="2" className="animate-pulse" style={{ animationDelay: `${i * 150}ms` }} />
-            ))}
+        {/* Terminal Leaf nodes */}
+        <g fill="white">
+          {[width/2-350, width/2-250, width/2-150, width/2-50, width/2+50, width/2+150, width/2+250, width/2+350].map((x, i) => (
+            <circle key={i} cx={x} cy={height-80} r="6" className="fill-primary" />
+          ))}
         </g>
-
-        {/* Faint Grid */}
-        <path d={`M 0,${height-50} L ${width},${height-50}`} stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="5,5" />
       </svg>
 
-      <div className="absolute bottom-4 right-6 font-mono text-[9px] text-primary/40 uppercase tracking-widest">
-        QUASI_DIAGONAL_ALGORITHM_V4
+      <div className="absolute bottom-4 right-6 font-mono text-[8px] text-muted uppercase tracking-widest opacity-30">
+        Static_Asset_Cluster_Map
       </div>
     </div>
   );

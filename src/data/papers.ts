@@ -48,10 +48,10 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   },
   {
     id: "hrp-optimization-2026",
-    title: "[IN PROGRESS] Neural Network Driven Hierarchical Risk Parity",
+    title: "[IN PROGRESS] Neural Network Based Hierarchical Risk Parity",
     author: "MAT Quant Division",
-    description: "Recursive bisection and quasi-diagonalization of asset covariance matrices.",
-    abstract: "This paper explores the Hierarchical Risk Parity (HRP) approach to portfolio construction. Unlike traditional Markowitz optimization, HRP does not require the inversion of the covariance matrix, making it robust to instability and providing superior risk-adjusted returns in highly correlated asset clusters.",
+    description: "Using Neural Networks to drive Hierarchical Risk Parity for superior portfolio allocation.",
+    abstract: "This paper explores the integration of Neural Networks with the Hierarchical Risk Parity (HRP) approach. Unlike traditional tree-based models, neural architectures provide the cross-sectional complexity needed to capture true alpha before HRP handles the allocation.",
     rawHtml: `
 <h2 class="text-xl font-bold mb-4 font-sans border-b border-white/10 pb-2">1. Introduction</h2>
 <p class="mb-4 leading-relaxed text-gray-400"><strong>Status: Work In Progress</strong></p>
