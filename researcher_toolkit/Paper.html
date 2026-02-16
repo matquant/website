@@ -3,87 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNN Predictive Distribution</title>
+    <title>BNN Meta-Labeling Research</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5)); opacity: 0.8; }
-            50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)); opacity: 1; }
-        }
-        .animate-glow {
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-        .sample-path {
-            opacity: 0.3;
-            transition: opacity 0.3s;
-        }
-        .sample-path:hover {
-            opacity: 1;
-        }
+        body { background-color: #0a0a0a; color: #d1d5db; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+        .primary-glow { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)); }
     </style>
 </head>
-<body class="bg-[#0a0a0a] flex items-center justify-center min-h-screen p-8">
-    <div class="w-full max-w-4xl bg-black/40 border border-white/10 rounded-2xl p-8 relative overflow-hidden shadow-2xl backdrop-blur-sm">
-        <div class="absolute top-6 left-8 font-mono text-[12px] text-blue-500/60 uppercase tracking-[0.3em] z-10">
-            // BAYESIAN_NEURAL_NETWORK_PREDICTIVE_DISTRIBUTION // MODEL_V4.2
-        </div>
-        
-        <svg viewBox="0 0 800 400" className="w-full h-auto">
-            <!-- Grid -->
-            <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-
-            <!-- Uncertainty Area -->
-            <path d="M 50,250 Q 150,220 250,260 T 450,240 T 650,280 T 750,250 L 750,320 Q 650,350 550,310 T 350,330 T 150,310 T 50,320 Z" 
-                  fill="rgb(59, 130, 246)" fill-opacity="0.1" />
-
-            <!-- Sampled Paths -->
-            <path d="M 50,260 Q 150,230 250,270 T 450,250 T 650,290 T 750,260" fill="none" stroke="rgb(59, 130, 246)" stroke-width="1" stroke-dasharray="4,2" class="sample-path" />
-            <path d="M 50,240 Q 150,210 250,250 T 450,230 T 650,270 T 750,240" fill="none" stroke="rgb(59, 130, 246)" stroke-width="1" stroke-dasharray="4,2" class="sample-path" />
-            <path d="M 50,275 Q 150,245 250,285 T 450,265 T 650,305 T 750,275" fill="none" stroke="rgb(59, 130, 246)" stroke-width="1" stroke-dasharray="4,2" class="sample-path" />
-
-            <!-- Mean Path -->
-            <path d="M 50,255 Q 150,225 250,265 T 450,245 T 650,285 T 750,255" 
-                  fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" class="animate-glow" />
-
-            <!-- Data Points -->
-            <circle cx="100" cy="245" r="4" fill="white" />
-            <circle cx="200" cy="235" r="4" fill="white" />
-            <circle cx="300" cy="275" r="4" fill="white" />
-            <circle cx="400" cy="240" r="4" fill="white" />
-            <circle cx="500" cy="265" r="4" fill="white" />
-            <circle cx="600" cy="295" r="4" fill="white" />
-            <circle cx="700" cy="260" r="4" fill="white" />
-
-            <!-- Axes Labels -->
-            <text x="50" y="380" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.4)" tracking-widest>TIME_SERIES_INDEX (t)</text>
-            <text x="10" y="200" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.4)" transform="rotate(-90 10 200)">EXPECTED_VALUE (y)</text>
-        </svg>
-
-        <!-- Legend -->
-        <div class="mt-8 flex justify-between items-end">
-            <div class="flex gap-8">
-                <div class="flex items-center gap-2">
-                    <div class="w-4 h-1 bg-blue-500 rounded-full"></div>
-                    <span class="font-mono text-[10px] text-white/60 tracking-wider">PREDICTIVE_MEAN</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 bg-blue-500/20 rounded-sm"></div>
-                    <span class="font-mono text-[10px] text-white/60 tracking-wider">EPISTEMIC_UNCERTAINTY</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-4 h-[1px] border-t border-dashed border-blue-400"></div>
-                    <span class="font-mono text-[10px] text-white/60 tracking-wider">STOCHASTIC_DRAWS</span>
-                </div>
-            </div>
-            <div class="text-right">
-                <div class="font-mono text-[10px] text-white/20 tracking-tighter">MAT_QUANT_LABS // INTERNAL_USE_ONLY</div>
-            </div>
-        </div>
+<body class="p-8 md:p-16 max-w-4xl mx-auto">
+    <div class="mb-12 border-b border-white/10 pb-8">
+        <div class="text-blue-500 font-mono text-xs tracking-widest mb-2">// RESEARCH_IN_PROGRESS</div>
+        <h1 class="text-4xl font-bold text-white mb-4">Bayesian Neural Network Meta-Labeling</h1>
+        <div class="text-gray-500 font-mono text-sm">MAT Quant Division // 2026</div>
     </div>
+
+    <h2 class="text-xl font-bold mb-4 font-sans border-b border-white/10 pb-2 text-white">1. Introduction</h2>
+    <p class="mb-4 leading-relaxed text-gray-400">This strategy utilizes a 50-period and 200-period Simple Moving Average (SMA) crossover as the primary signal generator within the S&P 500 universe. The methodology is grounded in the <strong>Meta-Labeling</strong> framework, a concept formalized by <strong>Marcos López de Prado</strong> in his seminal text <em>Advances in Financial Machine Learning</em> (2018) and earlier explored in his paper <em>Quantitative Meta-Strategies</em> (2015). While the primary model generates binary directional signals (−1 or 1), the strategy employs a secondary machine learning model to filter these signals, acting as a "gatekeeper" that permits or rejects execution based on the probability of success.</p>
+
+    <p class="mb-4 leading-relaxed text-gray-400">Crucially, this strategy departs from standard deterministic classifiers by utilizing a <strong>Bayesian Neural Network (BNN)</strong>. This approach draws directly from the foundational work of <strong>David MacKay</strong> (<em>A Practical Bayesian Framework for Backpropagation Networks</em>, 1992) and <strong>Radford Neal</strong> (<em>Bayesian Learning for Neural Networks</em>, 1996). By treating network weights as probability distributions rather than fixed values, the BNN provides inherent uncertainty quantification, allowing the strategy to gauge the confidence of a trade signal without the need for extensive external calibration.</p>
+
+    <h2 class="text-xl font-bold mb-4 font-sans border-b border-white/10 pb-2 text-white">2. Methodology</h2>
+    <p class="mb-4 leading-relaxed text-gray-400">The strategy operates primarily on Daily bars, with ongoing experimentation on lower timeframes to refine entry precision. The execution logic is divided into two distinct stages:</p>
+
+    <ul class="list-disc pl-5 mb-4 text-gray-400 space-y-2">
+    <li><strong>Primary Signal (Trend):</strong> A standard SMA crossover (50/200) identifies the potential trend direction.</li>
+    <li><strong>Secondary Signal (Meta-Labeling):</strong> The BNN evaluates the state of the market to generate a binary decision (0 or 1) and an uncertainty metric.</li>
+    </ul>
+
+    <p class="mb-4 leading-relaxed text-gray-400"><strong>Feature Engineering:</strong> To facilitate this decision, the BNN ingests a robust feature set designed to capture market regime. This includes Volatility, Relative Strength Index (RSI), Volume profiles, and historical price action. Furthermore, the model incorporates <strong>S&P 500 Market Beta</strong> as a key feature, allowing the algorithm to distinguish between idiosyncratic stock strength and broad market uplifts.</p>
+
+    <p class="mb-4 leading-relaxed text-gray-400"><strong>Labeling & Regime Detection:</strong> The meta-labeling target is defined using a dynamic Triple Barrier Method. A trade is labeled as successful (1) if it achieves a profit target defined by a multiple of the local standard deviation (n⋅σ). This dynamic threshold is critical for the strategy's performance in "sideways" markets. In regimes of low volatility, the standard deviation decreases, tightening the profit targets. This allows the model to "scale in" and detect breakouts earlier than a fixed-target model would, effectively adapting its expectations to the subdued volatility environment.</p>
+
+    <div class="bg-white/5 p-6 border-l-4 border-blue-500 my-8 italic text-gray-300">
+    "The BNN's primary utility in this framework is to assign low confidence (high uncertainty) to signals occurring in choppy, sideways market regimes, thereby filtering out the 'whipsaw' trades that typically degrade SMA performance."
+    </div>
+
+    <h2 class="text-xl font-bold mb-4 font-sans border-b border-white/10 pb-2 text-white">3. Conclusion</h2>
+    <p class="mb-4 leading-relaxed text-gray-400">Current backtesting is conducted with 100% position sizing to establish a performance baseline against the raw SMA strategy. The immediate goal is to validate that the BNN meta-labeler improves the risk-adjusted return by reducing the false positive rate of trend entries. Future development will leverage the unique probabilistic output of the BNN—specifically the predictive variance—to implement dynamic position sizing. In this proposed framework, capital allocation will be directly proportional to the model's confidence, increasing exposure in clear trends and reducing it in uncertain conditions.</p>
+
+    <footer class="mt-20 pt-8 border-t border-white/5 text-[10px] text-gray-600 font-mono text-center tracking-widest uppercase">
+        MAT Research Lab // 2026
+    </footer>
 </body>
 </html>

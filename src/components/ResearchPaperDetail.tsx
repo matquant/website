@@ -55,11 +55,11 @@ export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
         </header>
 
         {paper.id === 'bnn-meta-labeling-2026' ? (
-          <div className="mb-16">
+          <div className="mb-16 max-w-3xl mx-auto">
             <BNNChart />
           </div>
         ) : paper.imageUrl && (
-          <div className="mb-16 rounded-lg overflow-hidden border border-white/10 bg-white/5 p-1">
+          <div className="mb-16 rounded-lg overflow-hidden border border-white/10 bg-white/5 p-1 max-w-3xl mx-auto">
             <img src={paper.imageUrl} alt="Research Visual" className="w-full h-auto rounded shadow-2xl" />
           </div>
         )}

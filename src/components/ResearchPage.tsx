@@ -60,9 +60,9 @@ export const ResearchPage = ({ onBack, onSelectPaper }: { onBack: () => void, on
                 className="group hover:border-primary/40 p-8 flex flex-col h-full cursor-pointer transition-all duration-300"
                 onClick={() => onSelectPaper(paper.id)}
               >
-                <div className="mb-6 overflow-hidden rounded-lg border border-white/10 aspect-video bg-white/5">
+                <div className="mb-6 overflow-hidden rounded-lg border border-white/10 aspect-video bg-white/5 flex items-center justify-center">
                   {paper.id === 'bnn-meta-labeling-2026' ? (
-                    <div className="scale-75 origin-top w-[133.33%] h-[133.33%]">
+                    <div className="scale-75 origin-center w-[133.33%] h-[133.33%]">
                       <BNNChart />
                     </div>
                   ) : paper.imageUrl ? (
