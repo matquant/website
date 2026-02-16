@@ -13,26 +13,38 @@ function App() {
   const [view, setView] = useState<'landing' | 'research' | 'paper'>('landing');
   const [selectedPaperId, setSelectedPaperId] = useState<string | null>(null);
 
+  // Handle deep-linking and back-button
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#research/')) {
+        const id = hash.replace('#research/', '');
+        setSelectedPaperId(id);
+        setView('paper');
+      } else if (hash === '#research') {
+        setView('research');
+      } else {
+        setView('landing');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Check on initial load
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const handleViewResearch = () => {
-    setView('research');
-    window.scrollTo(0, 0);
+    window.location.hash = 'research';
   };
 
   const handleSelectPaper = (id: string) => {
-    setSelectedPaperId(id);
-    setView('paper');
-    window.scrollTo(0, 0);
+    window.location.hash = `research/${id}`;
   };
 
   const handleGoHome = () => {
-    setView('landing');
-    window.scrollTo(0, 0);
+    window.location.hash = '';
   };
-
-  // Scroll to top on view change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [view]);
 
   return (
     <div className="min-h-screen bg-background text-text font-sans selection:bg-primary/30 selection:text-white">
@@ -51,7 +63,6 @@ function App() {
 
         {view === 'research' && (
           <ResearchPage 
-            onBack={handleGoHome} 
             onSelectPaper={handleSelectPaper} 
           />
         )}
@@ -59,7 +70,6 @@ function App() {
         {view === 'paper' && selectedPaperId && (
           <ResearchPaperDetail 
             id={selectedPaperId} 
-            onBack={handleViewResearch} 
           />
         )}
       </main>

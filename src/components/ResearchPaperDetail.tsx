@@ -3,14 +3,14 @@ import { ArrowLeft, Download, User } from 'lucide-react';
 import { Button } from './ui/Button';
 import { TradingViewTechnicalAnalysis } from './ui/TerminalWidgets';
 import { BNNChart } from './ui/BNNChart';
+import { HRPChart } from './ui/HRPChart';
 import { RESEARCH_PAPERS } from '../data/papers';
 
 interface PaperDetailProps {
   id: string;
-  onBack: () => void;
 }
 
-export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
+export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
   const paper = RESEARCH_PAPERS.find(p => p.id === id);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
       {/* Top Navigation */}
       <div className="max-w-4xl mx-auto mb-12 flex justify-between items-center">
         <button 
-          onClick={onBack}
+          onClick={() => window.location.hash = 'research'}
           className="flex items-center gap-2 text-primary hover:text-white transition-colors font-mono text-sm"
         >
           <ArrowLeft size={16} /> HOMEPAGE
@@ -56,23 +56,29 @@ export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
           <div className="mb-16 max-w-3xl mx-auto">
             <BNNChart />
           </div>
-        ) : paper.imageUrl && (
+        ) : paper.id === 'hrp-optimization-2026' ? (
+          <div className="mb-16 max-w-3xl mx-auto">
+            <HRPChart />
+          </div>
+        ) : (paper.imageUrl && !paper.rawHtml) && (
           <div className="mb-16 rounded-lg overflow-hidden border border-white/10 bg-white/5 p-1 max-w-3xl mx-auto">
             <img src={paper.imageUrl} alt="Research Visual" className="w-full h-auto rounded shadow-2xl" />
           </div>
         )}
 
-        {/* Abstract */}
-        <section className="mb-16">
-          <h3 className="text-xs uppercase tracking-widest text-primary font-mono mb-4">// ABSTRACT</h3>
-          <p className="text-xl text-gray-300 leading-relaxed font-light italic">
-            {paper.abstract}
-          </p>
-        </section>
+        {/* Abstract - only show if not rawHtml or if specifically requested */}
+        {!paper.rawHtml && (
+          <section className="mb-16">
+            <h3 className="text-xs uppercase tracking-widest text-primary font-mono mb-4">// ABSTRACT</h3>
+            <p className="text-xl text-gray-300 leading-relaxed font-light italic">
+              {paper.abstract}
+            </p>
+          </section>
+        )}
 
         {/* Dynamic Content */}
         {paper.rawHtml ? (
-          <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: paper.rawHtml }} />
+          <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed space-y-8" dangerouslySetInnerHTML={{ __html: paper.rawHtml }} />
         ) : (
           <div className="space-y-16">
             {paper.content.map((section, idx) => (
@@ -89,39 +95,17 @@ export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
                   <div className="my-10">
                     <BNNChart />
                   </div>
+                ) : section.chartSymbol === 'HRP_VISUAL' ? (
+                  <div className="my-10">
+                    <HRPChart />
+                  </div>
                 ) : section.chartSymbol && (
                   <div className="my-10 rounded-lg overflow-hidden border border-white/10">
                     <TradingViewTechnicalAnalysis symbol={section.chartSymbol} />
                   </div>
                 )}
-
-                {section.code && (
-                  <div className="bg-white/5 border border-white/10 text-primary/90 p-6 rounded-lg font-mono text-sm my-8 overflow-x-auto shadow-inner">
-                    <pre className="whitespace-pre-wrap"><code>{section.code}</code></pre>
-                  </div>
-                )}
               </section>
             ))}
-          </div>
-        )}
-
-        {/* Toolkit for Template */}
-        {paper.id === 'template-v1' && (
-          <div className="mt-20 p-8 bg-primary/5 border border-primary/20 rounded-lg">
-            <h4 className="text-primary font-bold mb-4 font-mono tracking-widest">// RESEARCHER_TOOLKIT</h4>
-            <p className="text-sm text-muted mb-6">
-              Copy the raw HTML below to maintain consistent formatting for new publications.
-            </p>
-            <Button 
-              size="sm" 
-              variant="primary"
-              onClick={() => {
-                navigator.clipboard.writeText(paper.rawHtml || '');
-                alert('Template copied!');
-              }}
-            >
-              Copy HTML Source
-            </Button>
           </div>
         )}
 

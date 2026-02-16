@@ -2,8 +2,9 @@ import { Card } from './ui/Card';
 import { Terminal, ArrowRight, ArrowLeft } from 'lucide-react';
 import { RESEARCH_PAPERS } from '../data/papers';
 import { BNNChart } from './ui/BNNChart';
+import { HRPChart } from './ui/HRPChart';
 
-export const ResearchPage = ({ onBack, onSelectPaper }: { onBack: () => void, onSelectPaper: (id: string) => void }) => {
+export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) => void }) => {
   const allPapers = RESEARCH_PAPERS;
 
   return (
@@ -11,7 +12,7 @@ export const ResearchPage = ({ onBack, onSelectPaper }: { onBack: () => void, on
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <button 
-            onClick={onBack}
+            onClick={() => window.location.hash = ''}
             className="flex items-center gap-2 text-primary hover:text-white transition-colors mb-8 font-mono text-sm"
           >
             <ArrowLeft size={16} /> HOMEPAGE
@@ -31,10 +32,14 @@ export const ResearchPage = ({ onBack, onSelectPaper }: { onBack: () => void, on
                 className="group hover:border-primary/40 p-8 flex flex-col h-full cursor-pointer transition-all duration-300"
                 onClick={() => onSelectPaper(paper.id)}
               >
-                <div className="mb-6 overflow-hidden rounded-lg border border-white/10 aspect-video bg-white/5 flex items-center justify-center">
+                <div className="mb-6 overflow-hidden rounded-lg border border-white/10 aspect-video bg-white/5 flex items-center justify-center relative">
                   {paper.id === 'bnn-meta-labeling-2026' ? (
-                    <div className="scale-75 origin-center w-[133.33%] h-[133.33%]">
+                    <div className="w-full h-full">
                       <BNNChart />
+                    </div>
+                  ) : paper.id === 'hrp-optimization-2026' ? (
+                    <div className="w-full h-full">
+                      <HRPChart />
                     </div>
                   ) : paper.imageUrl ? (
                     <img src={paper.imageUrl} alt={paper.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />

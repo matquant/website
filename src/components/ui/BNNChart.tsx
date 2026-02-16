@@ -42,12 +42,12 @@ export const BNNChart = () => {
   }, [data]);
 
   return (
-    <div className="w-full aspect-[2/1] bg-black/40 border border-white/10 rounded-xl p-4 relative overflow-hidden group">
-      <div className="absolute top-4 left-4 font-mono text-[10px] text-primary/60 uppercase tracking-widest z-10">
-        // BNN_PREDICTIVE_DISTRIBUTION_V2.0
+    <div className="w-full h-full bg-black/40 relative overflow-hidden group">
+      <div className="absolute top-2 left-3 font-mono text-[8px] text-primary/60 uppercase tracking-widest z-10">
+        // BNN_PREDICTIVE_DISTRIBUTION
       </div>
       
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-110">
         {/* Grid Lines */}
         <g stroke="white" strokeWidth="0.5" strokeOpacity="0.05">
           {Array.from({ length: 10 }).map((_, i) => (
