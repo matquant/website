@@ -27,7 +27,6 @@ export const HRPChart = () => {
     l.push({ x1: centerX + 350, y1: top + 100, x2: centerX + 350, y2: top + 200 });
 
     // Level 2 -> Leafs
-    const leafParents = [centerX - 400, centerX - 300, centerX - 200, centerX - 100, centerX + 100, centerX + 200, centerX + 300, centerX + 400];
     const leafTopY = top + 200;
     
     [centerX-350, centerX-150, centerX+150, centerX+350].forEach(px => {

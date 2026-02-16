@@ -1,6 +1,7 @@
 import { Card } from './ui/Card';
 import { Terminal, ArrowRight, ArrowLeft } from 'lucide-react';
-import { RESEARCH_PAPERS, ResearchPaper } from '../data/papers';
+import { RESEARCH_PAPERS } from '../data/papers';
+import type { ResearchPaper } from '../data/papers';
 import { BNNChart } from './ui/BNNChart';
 import { HRPChart } from './ui/HRPChart';
 import { useState, useEffect } from 'react';
