@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Upload, FileText, CheckCircle2, Loader2 } from 'lucide-react';
+import { Upload, CheckCircle2, Loader2 } from 'lucide-react';
 
 interface FileDropzoneProps {
   onFileProcessed: (content: string, fileName: string) => void;

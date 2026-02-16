@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ResearchPaper } from '../data/papers';
+import type { ResearchPaper } from '../data/papers';
 
 export const useLocalPapers = () => {
   const [localPapers, setLocalPapers] = useState<ResearchPaper[]>([]);
