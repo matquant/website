@@ -1,133 +1,111 @@
 import { useMemo } from 'react';
 
 export const HRPChart = () => {
-  const size = 600;
-  const padding = 60;
-  const gridSize = 12; // 12 assets
-  const cellSize = (size - padding * 2) / gridSize;
+  const width = 600;
+  const height = 400;
+  const padding = 50;
 
-  const assets = ['NVDA', 'AMD', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NFLX', 'AVGO', 'QCOM', 'INTC'];
+  // Simple dendrogram structure
+  const treeLines = useMemo(() => {
+    const lines = [];
+    const bottomY = height - padding;
+    const topY = padding;
+    const centerX = width / 2;
+    
+    // Root to two main clusters
+    lines.push({ x1: centerX, y1: topY, x2: centerX - 150, y2: topY + 80 });
+    lines.push({ x1: centerX, y1: topY, x2: centerX + 150, y2: topY + 80 });
+    
+    // Left cluster bisection
+    lines.push({ x1: centerX - 150, y1: topY + 80, x2: centerX - 220, y2: topY + 180 });
+    lines.push({ x1: centerX - 150, y1: topY + 80, x2: centerX - 80, y2: topY + 180 });
+    
+    // Right cluster bisection
+    lines.push({ x1: centerX + 150, y1: topY + 80, x2: centerX + 80, y2: topY + 180 });
+    lines.push({ x1: centerX + 150, y1: topY + 80, x2: centerX + 220, y2: topY + 180 });
+    
+    // Leaf connections (simplified)
+    const leafs = [-250, -190, -110, -50, 50, 110, 190, 250];
+    leafs.forEach((offset, i) => {
+      const parentX = i < 4 ? (i < 2 ? centerX - 220 : centerX - 80) : (i < 6 ? centerX + 80 : centerX + 220);
+      const parentY = topY + 180;
+      lines.push({ x1: parentX, y1: parentY, x2: centerX + offset, y2: bottomY });
+    });
 
-  // Simulate a clustered correlation matrix
-  const data = useMemo(() => {
-    const matrix = [];
-    for (let i = 0; i < gridSize; i++) {
-      for (let j = 0; j < gridSize; j++) {
-        // Higher correlation for assets near each other (simulating clusters)
-        const distance = Math.abs(i - j);
-        const baseCorr = 1 - (distance / gridSize);
-        const noise = (Math.random() - 0.5) * 0.2;
-        matrix.push({
-          x: i,
-          y: j,
-          value: i === j ? 1 : Math.max(0, Math.min(1, baseCorr + noise))
-        });
-      }
-    }
-    return matrix;
-  }, []);
+    return lines;
+  }, [width, height]);
 
   return (
-    <div className="w-full h-full bg-black/60 relative overflow-hidden group">
-      <div className="absolute top-2 left-3 font-mono text-[8px] text-primary/60 uppercase tracking-[0.4em] z-10">
-        // HRP_QUASI_DIAGONALIZATION
+    <div className="w-full h-full bg-black/40 relative overflow-hidden flex items-center justify-center">
+      <div className="absolute top-3 left-4 font-mono text-[8px] text-primary/40 uppercase tracking-[0.4em] z-10">
+        // HRP_RECURSIVE_BISECTION_TREE
       </div>
 
-      <svg viewBox={`0 0 ${size} ${size}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-105">
+      <svg viewBox={`0 0 ${width} ${height}`} className="w-[85%] h-[85%] overflow-visible">
+        {/* Glow effect for the tree */}
         <defs>
-          <linearGradient id="heatGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#FFCB05" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#00274C" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#030305" stopOpacity="1" />
-          </linearGradient>
-          
-          {/* Glow filter */}
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          <filter id="treeGlow">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
 
-        {/* Dendrogram (Tree structure on top) */}
-        <g transform={`translate(${padding}, 10)`} className="stroke-primary/30" strokeWidth="1.5" fill="none">
-          <path d={`M ${cellSize/2},40 L ${cellSize/2},20 L ${cellSize * 2.5},20 L ${cellSize * 2.5},40`} />
-          <path d={`M ${cellSize * 3.5},40 L ${cellSize * 3.5},20 L ${cellSize * 5.5},20 L ${cellSize * 5.5},40`} />
-          <path d={`M ${cellSize * 1.5},20 L ${cellSize * 1.5},5 L ${cellSize * 4.5},5 L ${cellSize * 4.5},20`} />
-          <circle cx={cellSize * 1.5} cy={20} r="2" fill="#FFCB05" />
-          <circle cx={cellSize * 4.5} cy={20} r="2" fill="#FFCB05" />
-          <circle cx={cellSize * 3} cy={5} r="3" className="fill-primary animate-pulse" />
-        </g>
-
-        {/* Heatmap Grid */}
-        <g transform={`translate(${padding}, ${padding})`}>
-          {data.map((cell, i) => (
-            <rect
+        {/* Tree Branches */}
+        <g filter="url(#treeGlow)">
+          {treeLines.map((line, i) => (
+            <line
               key={i}
-              x={cell.x * cellSize}
-              y={cell.y * cellSize}
-              width={cellSize - 1}
-              height={cellSize - 1}
-              fill={cell.value > 0.8 ? '#FFCB05' : cell.value > 0.5 ? '#003B72' : '#0d0d10'}
-              fillOpacity={cell.value}
-              className="transition-all duration-500 hover:fill-white"
-            >
-              <title>{`Corr: ${cell.value.toFixed(2)}`}</title>
-            </rect>
-          ))}
-
-          {/* Asset Labels (X) */}
-          {assets.map((asset, i) => (
-            <text
-              key={`x-${i}`}
-              x={i * cellSize + cellSize / 2}
-              y={-10}
-              textAnchor="middle"
-              className="fill-muted font-mono text-[8px] uppercase tracking-tighter"
-              transform={`rotate(-45 ${i * cellSize + cellSize / 2}, -10)`}
-            >
-              {asset}
-            </text>
-          ))}
-
-          {/* Asset Labels (Y) */}
-          {assets.map((asset, i) => (
-            <text
-              key={`y-${i}`}
-              x={-10}
-              y={i * cellSize + cellSize / 2 + 3}
-              textAnchor="end"
-              className="fill-muted font-mono text-[8px] uppercase tracking-tighter"
-            >
-              {asset}
-            </text>
-          ))}
-        </g>
-
-        {/* Risk Allocation Bar Chart (Bottom) */}
-        <g transform={`translate(${padding}, ${size - 40})`}>
-          {assets.map((_, i) => (
-            <rect
-              key={`bar-${i}`}
-              x={i * cellSize}
-              y={-(Math.random() * 30 + 10)}
-              width={cellSize - 4}
-              height={40}
-              className="fill-primary/20 stroke-primary/40"
-              strokeWidth="0.5"
+              x1={line.x1}
+              y1={line.y1}
+              x2={line.x2}
+              y2={line.y2}
+              className="stroke-primary"
+              strokeWidth="2"
+              strokeLinecap="round"
+              opacity={0.6}
             />
           ))}
-          <text x={-padding + 10} y={-10} className="fill-primary font-mono text-[7px] tracking-[0.2em] uppercase">RISK_WT</text>
+        </g>
+
+        {/* Nodes */}
+        <g>
+          {treeLines.map((line, i) => (
+            <circle
+              key={`node-start-${i}`}
+              cx={line.x1}
+              cy={line.y1}
+              r="3"
+              className="fill-white"
+            />
+          ))}
+          {/* Leaf nodes */}
+          {[-250, -190, -110, -50, 50, 110, 190, 250].map((offset, i) => (
+            <circle
+              key={`leaf-${i}`}
+              cx={width / 2 + offset}
+              cy={height - padding}
+              r="4"
+              className="fill-primary"
+            />
+          ))}
+        </g>
+
+        {/* Decorative Grid Lines (faint) */}
+        <g opacity="0.05" stroke="white" strokeWidth="1">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <line key={i} x1="0" y1={(height / 4) * i} x2={width} y2={(height / 4) * i} />
+          ))}
         </g>
       </svg>
-
-      {/* Legend & Stats Overlay */}
-      <div className="absolute bottom-6 right-6 flex flex-col gap-1 text-right">
-        <div className="font-mono text-[10px] text-primary">SIGMA_TOTAL: 0.142</div>
-        <div className="font-mono text-[8px] text-muted uppercase tracking-widest">Confidence: 98.4%</div>
-      </div>
       
-      {/* Decorative Scanline */}
-      <div className="absolute inset-0 pointer-events-none bg-scan-line opacity-10"></div>
+      {/* Legend / Status */}
+      <div className="absolute bottom-4 right-6 text-right font-mono text-[8px] text-muted space-y-1">
+        <div>CLUSTERING: WARD_LINKAGE</div>
+        <div>STABILITY_INDEX: 0.94</div>
+      </div>
     </div>
   );
 };
