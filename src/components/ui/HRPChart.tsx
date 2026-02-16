@@ -2,101 +2,76 @@ import { useMemo } from 'react';
 
 export const HRPChart = () => {
   const width = 800;
-  const height = 450;
-  const paddingX = 80;
-  const paddingY = 60;
+  const height = 500;
+  
+  // Clean, high-impact dendrogram data
+  const lines = useMemo(() => {
+    const l = [];
+    const centerX = width / 2;
+    const top = 50;
+    const bottom = height - 50;
+    
+    // Main branches (Level 0 -> Level 1)
+    l.push({ x1: centerX - 250, y1: top, x2: centerX + 250, y2: top }); // horizontal
+    l.push({ x1: centerX - 250, y1: top, x2: centerX - 250, y2: top + 100 }); // left vertical
+    l.push({ x1: centerX + 250, y1: top, x2: centerX + 250, y2: top + 100 }); // right vertical
+    
+    // Level 1 -> Level 2 (Left)
+    l.push({ x1: centerX - 350, y1: top + 100, x2: centerX - 150, y2: top + 100 });
+    l.push({ x1: centerX - 350, y1: top + 100, x2: centerX - 350, y2: top + 200 });
+    l.push({ x1: centerX - 150, y1: top + 100, x2: centerX - 150, y2: top + 200 });
 
-  // Famous HRP Dendrogram (Orthogonal lines)
-  const treeLines = useMemo(() => {
-    const lines: { x1: number; y1: number; x2: number; y2: number }[] = [];
-    const top = paddingY;
-    const bottom = height - paddingY;
-    const center = width / 2;
+    // Level 1 -> Level 2 (Right)
+    l.push({ x1: centerX + 150, y1: top + 100, x2: centerX + 350, y2: top + 100 });
+    l.push({ x1: centerX + 150, y1: top + 100, x2: centerX + 150, y2: top + 200 });
+    l.push({ x1: centerX + 350, y1: top + 100, x2: centerX + 350, y2: top + 200 });
 
-    // Root Level
-    const level1Y = top + 60;
-    lines.push({ x1: center - 200, y1: top, x2: center + 200, y2: top }); // horizontal top
-    lines.push({ x1: center - 200, y1: top, x2: center - 200, y2: level1Y }); // vertical left
-    lines.push({ x1: center + 200, y1: top, x2: center + 200, y2: level1Y }); // vertical right
-
-    // Level 2 Left
-    const level2Y = level1Y + 80;
-    lines.push({ x1: center - 300, y1: level1Y, x2: center - 100, y2: level1Y }); // horizontal
-    lines.push({ x1: center - 300, y1: level1Y, x2: center - 300, y2: level2Y }); // vertical
-    lines.push({ x1: center - 100, y1: level1Y, x2: center - 100, y2: level2Y }); // vertical
-
-    // Level 2 Right
-    lines.push({ x1: center + 100, y1: level1Y, x2: center + 300, y2: level1Y }); // horizontal
-    lines.push({ x1: center + 100, y1: level1Y, x2: center + 100, y2: level2Y }); // vertical
-    lines.push({ x1: center + 300, y1: level1Y, x2: center + 300, y2: level2Y }); // vertical
-
-    // Leaf nodes connections (8 clusters)
-    const leafOffsets = [-350, -250, -150, -50, 50, 150, 250, 350];
-    leafOffsets.forEach((offset, i) => {
-      const parentX = i < 2 ? center - 300 : (i < 4 ? center - 100 : (i < 6 ? center + 100 : center + 300));
-      lines.push({ x1: parentX - 25, y1: level2Y, x2: parentX + 25, y2: level2Y }); // small horizontal
-      lines.push({ x1: center + offset, y1: level2Y, x2: center + offset, y2: bottom }); // final vertical to leaf
+    // Level 2 -> Leafs
+    const leafParents = [centerX - 400, centerX - 300, centerX - 200, centerX - 100, centerX + 100, centerX + 200, centerX + 300, centerX + 400];
+    const leafTopY = top + 200;
+    
+    [centerX-350, centerX-150, centerX+150, centerX+350].forEach(px => {
+        l.push({ x1: px - 40, y1: leafTopY, x2: px + 40, y2: leafTopY });
+        l.push({ x1: px - 40, y1: leafTopY, x2: px - 40, y2: bottom });
+        l.push({ x1: px + 40, y1: leafTopY, x2: px + 40, y2: bottom });
     });
 
-    return lines;
-  }, [width, height]);
+    return l;
+  }, []);
 
   return (
-    <div className="w-full h-full bg-black/40 relative overflow-hidden flex items-center justify-center">
-      <div className="absolute top-2 left-3 font-mono text-[8px] text-primary/60 uppercase tracking-[0.4em] z-10">
-        // HRP_QUASI_DIAGONALIZATION_TREE
+    <div className="w-full h-full bg-[#050505] relative overflow-hidden flex items-center justify-center border border-white/5">
+      <div className="absolute top-4 left-4 font-mono text-[10px] text-primary/80 uppercase tracking-[0.5em] z-10">
+        // HRP_RECURSIVE_DIAGONALIZATION
       </div>
 
-      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-110">
-        <defs>
-          <filter id="hrpGlow">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-        </defs>
-
-        <g filter="url(#hrpGlow)">
-          {treeLines.map((line, i) => (
-            <line
-              key={i}
-              x1={line.x1}
-              y1={line.y1}
-              x2={line.x2}
-              y2={line.y2}
-              stroke="currentColor"
-              strokeWidth="2.5"
-              className="text-primary/80"
-              strokeLinecap="square"
-            />
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-100 p-8">
+        <g stroke="currentColor" strokeWidth="3" fill="none" className="text-primary">
+          {lines.map((line, i) => (
+            <line key={i} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} strokeLinecap="square" />
           ))}
         </g>
 
-        {/* Junction Nodes */}
-        <g fill="white">
-          <circle cx={width/2} cy={paddingY} r="4" className="fill-primary" />
-          {treeLines.map((line, i) => (
-            <circle key={i} cx={line.x1} cy={line.y1} r="2" fillOpacity="0.5" />
-          ))}
+        {/* Junction points */}
+        <g className="fill-white">
+            <circle cx={width/2} cy={50} r="5" />
+            <circle cx={width/2-250} cy={150} r="4" />
+            <circle cx={width/2+250} cy={150} r="4" />
         </g>
 
-        {/* Leaf Nodes */}
-        {[-350, -250, -150, -50, 50, 150, 250, 350].map((offset, i) => (
-          <g key={i} transform={`translate(${width / 2 + offset}, ${height - paddingY})`}>
-            <circle r="5" className="fill-primary shadow-glow" />
-            <rect x="-1" y="5" width="2" height="15" className="fill-primary/20" />
-          </g>
-        ))}
-        
-        {/* Background Grid */}
-        <g opacity="0.03" stroke="white" strokeWidth="1">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <line key={i} x1={(width / 12) * i} y1="0" x2={(width / 12) * i} y2={height} />
-          ))}
+        {/* Assets (Leafs) */}
+        <g className="fill-primary">
+            {[width/2-390, width/2-310, width/2-190, width/2-110, width/2+110, width/2+190, width/2+310, width/2+390].map((x, i) => (
+                <rect key={i} x={x-5} y={height-60} width="10" height="20" rx="2" className="animate-pulse" style={{ animationDelay: `${i * 150}ms` }} />
+            ))}
         </g>
+
+        {/* Faint Grid */}
+        <path d={`M 0,${height-50} L ${width},${height-50}`} stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="5,5" />
       </svg>
 
-      <div className="absolute bottom-2 right-3 font-mono text-[7px] text-muted tracking-tighter uppercase opacity-50">
-        Recursive_Bisection_v4.2 // Institutional_Grade
+      <div className="absolute bottom-4 right-6 font-mono text-[9px] text-primary/40 uppercase tracking-widest">
+        QUASI_DIAGONAL_ALGORITHM_V4
       </div>
     </div>
   );

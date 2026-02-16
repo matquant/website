@@ -1,11 +1,37 @@
 import { Card } from './ui/Card';
 import { Terminal, ArrowRight, ArrowLeft } from 'lucide-react';
-import { RESEARCH_PAPERS } from '../data/papers';
+import { RESEARCH_PAPERS, ResearchPaper } from '../data/papers';
 import { BNNChart } from './ui/BNNChart';
 import { HRPChart } from './ui/HRPChart';
+import { useState, useEffect } from 'react';
 
 export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) => void }) => {
-  const allPapers = RESEARCH_PAPERS;
+  const [dynamicPapers, setDynamicPapers] = useState<ResearchPaper[]>([]);
+
+  useEffect(() => {
+    // Attempt to load the auto-indexed papers
+    fetch('/src/data/papers_manifest.json')
+      .then(res => res.json())
+      .then(async (manifest: { id: string, title: string, fileName: string }[]) => {
+        const loaded = await Promise.all(manifest.map(async (p) => {
+          const res = await fetch(`/research_papers/${p.fileName}`);
+          const html = await res.text();
+          return {
+            id: p.id,
+            title: p.title,
+            author: "MAT Research Lab",
+            description: "Automatically indexed publication.",
+            abstract: "External research document.",
+            rawHtml: html,
+            content: []
+          } as ResearchPaper;
+        }));
+        setDynamicPapers(loaded);
+      })
+      .catch(() => console.log("No dynamic papers found."));
+  }, []);
+
+  const allPapers = [...dynamicPapers, ...RESEARCH_PAPERS];
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-8">
@@ -32,13 +58,13 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                 className="group hover:border-primary/40 p-8 flex flex-col h-full cursor-pointer transition-all duration-300"
                 onClick={() => onSelectPaper(paper.id)}
               >
-                <div className="mb-6 overflow-hidden rounded-lg border border-white/10 aspect-video bg-white/5 flex items-center justify-center relative">
+                <div className="mb-6 overflow-hidden rounded-lg border border-white/10 aspect-video bg-white/5 flex items-center justify-center relative group">
                   {paper.id === 'bnn-meta-labeling-2026' ? (
-                    <div className="w-full h-full">
+                    <div className="w-full h-full transform group-hover:scale-110 transition-transform duration-500">
                       <BNNChart />
                     </div>
                   ) : paper.id === 'hrp-optimization-2026' ? (
-                    <div className="w-full h-full">
+                    <div className="w-full h-full transform group-hover:scale-110 transition-transform duration-500">
                       <HRPChart />
                     </div>
                   ) : paper.imageUrl ? (

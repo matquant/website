@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRP Dendrogram Visual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0a0a0a] flex items-center justify-center min-h-screen p-8">
+    <div class="w-full max-w-4xl aspect-video bg-[#050505] border border-white/10 rounded-2xl relative overflow-hidden flex items-center justify-center shadow-2xl">
+        <div class="absolute top-6 left-8 font-mono text-[12px] text-yellow-500/60 uppercase tracking-[0.5em] z-10">
+            // HRP_RECURSIVE_DIAGONALIZATION // MODEL_V4.2
+        </div>
+        
+        <svg viewBox="0 0 800 500" class="w-[90%] h-[90%]">
+            <g stroke="#FFCB05" stroke-width="3" fill="none">
+                <!-- Main Tree -->
+                <path d="M 150,50 L 650,50 M 150,50 L 150,150 M 650,50 L 650,150" />
+                <path d="M 50,150 L 250,150 M 50,150 L 50,250 M 250,150 L 250,250" />
+                <path d="M 550,150 L 750,150 M 550,150 L 550,250 M 750,150 L 750,250" />
+                
+                <!-- Leafs -->
+                <path d="M 20,250 L 80,250 M 20,250 L 20,400 M 80,250 L 80,400" />
+                <path d="M 220,250 L 280,250 M 220,250 L 220,400 M 280,250 L 280,400" />
+                <path d="M 520,250 L 580,250 M 520,250 L 520,400 M 580,250 L 580,400" />
+                <path d="M 720,250 L 780,250 M 720,250 L 720,400 M 780,250 L 780,400" />
+            </g>
+
+            <!-- Nodes -->
+            <g fill="white">
+                <circle cx="400" cy="50" r="6" fill="#FFCB05" />
+                <circle cx="150" cy="50" r="3" />
+                <circle cx="650" cy="50" r="3" />
+                <circle cx="150" cy="150" r="4" fill="#FFCB05" />
+                <circle cx="650" cy="150" r="4" fill="#FFCB05" />
+            </g>
+
+            <!-- Bottom Rects -->
+            <g fill="#FFCB05">
+                <rect x="15" y="400" width="10" height="30" rx="2" />
+                <rect x="75" y="400" width="10" height="30" rx="2" />
+                <rect x="215" y="400" width="10" height="30" rx="2" />
+                <rect x="275" y="400" width="10" height="30" rx="2" />
+                <rect x="515" y="400" width="10" height="30" rx="2" />
+                <rect x="575" y="400" width="10" height="30" rx="2" />
+                <rect x="715" y="400" width="10" height="30" rx="2" />
+                <rect x="775" y="400" width="10" height="30" rx="2" />
+            </g>
+        </svg>
+
+        <div class="absolute bottom-6 right-8 font-mono text-[10px] text-white/20 uppercase tracking-widest">
+            MAT_QUANT_LABS // INTERNAL_STRUCTURE_V4
+        </div>
+    </div>
+</body>
+</html>
