@@ -4,7 +4,6 @@ import { Button } from './ui/Button';
 import { TradingViewTechnicalAnalysis } from './ui/TerminalWidgets';
 import { BNNChart } from './ui/BNNChart';
 import { RESEARCH_PAPERS } from '../data/papers';
-import { useLocalPapers } from '../hooks/useLocalPapers';
 
 interface PaperDetailProps {
   id: string;
@@ -12,8 +11,7 @@ interface PaperDetailProps {
 }
 
 export const ResearchPaperDetail = ({ id, onBack }: PaperDetailProps) => {
-  const { localPapers } = useLocalPapers();
-  const paper = [...localPapers, ...RESEARCH_PAPERS].find(p => p.id === id);
+  const paper = RESEARCH_PAPERS.find(p => p.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
