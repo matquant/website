@@ -17,7 +17,7 @@ type HistoryItem = {
 
 export const Terminal = () => {
   const [history, setHistory] = useState<HistoryItem[]>([
-    { type: 'text', content: 'Type or click a protocol below to initialize.' }
+    { type: 'text', content: 'MAT Research Terminal. Type help for commands.' }
   ]);
   const [input, setInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -48,34 +48,34 @@ export const Terminal = () => {
       setHistory([]);
     } else if (cmd === 'about') {
       setHistory(prev => [...prev, 
-        { type: 'text', content: `>> ${cmdStr}`, lineColor: 'text-primary' },
-        { type: 'text', content: 'NAVIGATING TO ABOUT SECTION...', lineColor: 'text-white/70' }
+        { type: 'text', content: `> ${cmdStr}`, lineColor: 'text-primary' },
+        { type: 'text', content: 'Navigating to section: About', lineColor: 'text-muted' }
       ]);
-      setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 500);
+      setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'auto' }), 100);
     } else if (cmd === 'faq') {
       setHistory(prev => [...prev, 
-        { type: 'text', content: `>> ${cmdStr}`, lineColor: 'text-primary' },
-        { type: 'text', content: 'OPENING FAQ PROTOCOL...', lineColor: 'text-white/70' }
+        { type: 'text', content: `> ${cmdStr}`, lineColor: 'text-primary' },
+        { type: 'text', content: 'Navigating to section: FAQ', lineColor: 'text-muted' }
       ]);
-      setTimeout(() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }), 500);
+      setTimeout(() => document.getElementById('faq')?.scrollIntoView({ behavior: 'auto' }), 100);
     } else if (cmd === 'view' && args.length > 0) {
       const ticker = args[0].toUpperCase();
       setHistory(prev => [...prev, 
-        { type: 'text', content: `>> ${cmdStr}`, lineColor: 'text-primary' },
-        { type: 'text', content: `FETCHING MARKET DATA FOR ${ticker}...`, lineColor: 'text-white/70' },
+        { type: 'text', content: `> ${cmdStr}`, lineColor: 'text-primary' },
+        { type: 'text', content: `Loading market data: ${ticker}`, lineColor: 'text-muted' },
         { type: 'widget', content: <TradingViewSymbolInfo symbol={ticker} /> },
         { type: 'widget', content: <TradingViewTechnicalAnalysis symbol={ticker} /> }
       ]);
       setShowSuggestions(false);
     } else if (cmd in COMMANDS) {
       setHistory(prev => [...prev, 
-        { type: 'text', content: `>> ${cmdStr}`, lineColor: 'text-primary' },
+        { type: 'text', content: `> ${cmdStr}`, lineColor: 'text-primary' },
         { type: 'text', content: COMMANDS[cmd as keyof typeof COMMANDS] }
       ]);
     } else if (cmd !== '') {
       setHistory(prev => [...prev, 
-        { type: 'text', content: `>> ${cmdStr}`, lineColor: 'text-primary' },
-        { type: 'text', content: `ERR: INVALID COMMAND "${cmd}"`, lineColor: 'text-[#ff3b30]' }
+        { type: 'text', content: `> ${cmdStr}`, lineColor: 'text-primary' },
+        { type: 'text', content: `Error: Command not found: ${cmd}`, lineColor: 'text-red-500/80' }
       ]);
     }
   };
@@ -87,50 +87,41 @@ export const Terminal = () => {
   };
 
   return (
-    <div className="relative group">
-      {/* Outer Glow */}
-      <div className="absolute -inset-0.5 bg-primary/20 rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-      
+    <div className="relative">
       <div 
-        className="relative bg-[#050505] border border-white/10 rounded-lg shadow-2xl h-[450px] flex flex-col font-mono text-sm overflow-hidden cursor-text"
+        className="relative bg-surface border border-white/5 shadow-2xl h-[500px] flex flex-col font-mono text-xs overflow-hidden cursor-text"
         onClick={() => inputRef.current?.focus()}
       >
         {/* Terminal Header */}
-        <div className="bg-white/5 border-b border-white/10 px-4 py-2 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-primary font-bold tracking-tighter">MAT</span>
-            <span className="text-muted text-[10px]">RESEARCH_CORE_v4</span>
+        <div className="bg-background border-b border-white/5 px-6 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span className="text-white font-bold tracking-widest text-[10px] uppercase">Research Console</span>
+            <span className="text-muted text-[9px] uppercase tracking-widest">v2.4.0</span>
           </div>
-          <div className="flex gap-1.5">
-             <div className="w-2.5 h-2.5 rounded-full bg-white/10"></div>
-             <div className="w-2.5 h-2.5 rounded-full bg-white/10"></div>
-             <div className="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+          <div className="flex gap-4">
+             <div className="w-1.5 h-1.5 bg-white/10"></div>
+             <div className="w-1.5 h-1.5 bg-white/10"></div>
           </div>
         </div>
 
         {/* Terminal Body */}
-        <div ref={scrollRef} className="flex-grow p-6 overflow-y-auto space-y-2 scrollbar-hide relative">
+        <div ref={scrollRef} className="flex-grow p-8 overflow-y-auto space-y-3 scrollbar-hide relative">
           {history.map((item, i) => (
-            <div key={i} className={item.lineColor || 'text-white/90'}>
+            <div key={i} className={item.lineColor || 'text-white/80'}>
               {item.content}
             </div>
           ))}
 
-          {/* Clickable Quick Protocols */}
-          <div className="flex flex-wrap gap-2 pt-4">
-            {['ABOUT', 'FAQ', 'VIEW', 'CLEAR'].map((label) => (
+          {/* Quick Commands */}
+          <div className="flex flex-wrap gap-4 pt-6">
+            {['about', 'faq', 'clear'].map((label) => (
               <button
                 key={label}
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (label === 'VIEW') {
-                    setInput('view ');
-                    inputRef.current?.focus();
-                  } else {
-                    executeCommand(label);
-                  }
+                  executeCommand(label);
                 }}
-                className="px-3 py-1 bg-white/5 border border-white/10 rounded-md text-[10px] text-primary hover:bg-primary/20 hover:border-primary/50 transition-all uppercase font-bold tracking-wider"
+                className="text-[10px] text-muted hover:text-primary transition-colors uppercase font-bold tracking-widest border-b border-transparent hover:border-primary"
               >
                 {label}
               </button>

@@ -24,22 +24,20 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variants = {
-    primary: "bg-primary text-background hover:bg-white hover:text-black shadow-[0_0_15px_rgba(0,255,148,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] border border-transparent",
-    secondary: "bg-surface border border-white/10 text-white hover:border-primary/50 hover:text-primary hover:bg-white/5",
-    outline: "bg-transparent border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary hover:shadow-[0_0_15px_rgba(0,255,148,0.2)]",
+    primary: "bg-primary text-background hover:bg-white hover:text-black border border-transparent active:translate-y-px",
+    secondary: "bg-surface border border-white/10 text-white hover:bg-surfaceHighlight",
+    outline: "bg-transparent border border-primary/40 text-primary hover:bg-primary/5 hover:border-primary",
     ghost: "bg-transparent text-muted hover:text-white"
   };
 
   const widthClass = fullWidth ? "w-full" : "";
-  const roundedClass = "rounded-sm"; // More angular for tech feel
+  const roundedClass = "rounded-none"; // Fully angular for a professional look
 
   return (
     <button 
       className={`${baseStyles} ${sizes[size]} ${variants[variant]} ${widthClass} ${roundedClass} ${className}`}
       {...props}
     >
-      {/* Glitch/Tech hover effect overlay */}
-      <span className="absolute inset-0 w-full h-full bg-white/20 -translate-x-full skew-x-12 group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
       <span className="relative z-10 flex items-center gap-2">{children}</span>
     </button>
   );

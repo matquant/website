@@ -42,14 +42,14 @@ export const BNNChart = () => {
   }, [data]);
 
   return (
-    <div className="w-full h-full bg-black/40 relative overflow-hidden group">
-      <div className="absolute top-2 left-3 font-mono text-[8px] text-primary/60 uppercase tracking-widest z-10">
-        // BNN_PREDICTIVE_DISTRIBUTION
+    <div className="w-full h-full bg-surface border border-white/5 relative overflow-hidden group">
+      <div className="absolute top-4 left-4 font-mono text-[10px] text-muted uppercase tracking-widest z-10 border-l border-primary/40 pl-3">
+        Predictive Distribution // BNN
       </div>
       
-      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full scale-110">
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full">
         {/* Grid Lines */}
-        <g stroke="white" strokeWidth="0.5" strokeOpacity="0.05">
+        <g stroke="white" strokeWidth="0.5" strokeOpacity="0.03">
           {Array.from({ length: 10 }).map((_, i) => (
             <line key={`v-${i}`} x1={(width / 10) * i} y1="0" x2={(width / 10) * i} y2={height} />
           ))}
@@ -62,7 +62,7 @@ export const BNNChart = () => {
         <polygon
           points={areaPoints}
           fill="currentColor"
-          className="text-primary/10"
+          className="text-primary/5"
         />
 
         {/* Sampled Paths (the 'ensemble') */}
@@ -72,9 +72,8 @@ export const BNNChart = () => {
             d={path}
             fill="none"
             stroke="currentColor"
-            strokeWidth="1"
-            className="text-primary/20"
-            strokeDasharray="4 2"
+            strokeWidth="0.5"
+            className="text-primary/10"
           />
         ))}
 
@@ -83,9 +82,8 @@ export const BNNChart = () => {
           d={meanPath}
           fill="none"
           stroke="currentColor"
-          strokeWidth="3"
-          className="text-primary animate-pulse"
-          style={{ filter: 'drop-shadow(0 0 8px rgba(var(--primary-rgb), 0.8))' }}
+          strokeWidth="2"
+          className="text-primary"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -96,29 +94,25 @@ export const BNNChart = () => {
             key={i}
             cx={d.x}
             cy={d.y + (Math.random() - 0.5) * 10}
-            r="3"
-            className="fill-white"
+            r="2"
+            className="fill-white/20"
           />
         ))}
 
         {/* X and Y labels (minimal) */}
-        <text x={padding} y={height - 10} className="fill-muted font-mono text-[10px]">TIME_STEPS (T)</text>
-        <text x={10} y={height / 2} transform={`rotate(-90 10 ${height / 2})`} className="fill-muted font-mono text-[10px]">PROBABILITY_DENSITY (P)</text>
+        <text x={padding} y={height - 10} className="fill-muted font-mono text-[9px] uppercase tracking-widest">Time Steps (T)</text>
+        <text x={10} y={height / 2} transform={`rotate(-90 10 ${height / 2})`} className="fill-muted font-mono text-[9px] uppercase tracking-widest">Density (P)</text>
       </svg>
 
       {/* Legend / Info */}
-      <div className="absolute bottom-4 right-4 flex flex-col gap-2 font-mono text-[10px]">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-1 bg-primary"></div>
-          <span className="text-gray-400">MEAN_PREDICTION</span>
+      <div className="absolute bottom-4 right-4 flex flex-col gap-2 font-mono text-[9px] uppercase tracking-wider">
+        <div className="flex items-center gap-3">
+          <div className="w-4 h-0.5 bg-primary"></div>
+          <span className="text-muted">Mean Estimate</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-primary/20"></div>
-          <span className="text-gray-400">95%_CONFIDENCE_INTERVAL</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-[1px] bg-primary/40 border-t border-dashed border-primary/40"></div>
-          <span className="text-gray-400">STOCHASTIC_SAMPLES</span>
+        <div className="flex items-center gap-3">
+          <div className="w-4 h-3 bg-primary/10"></div>
+          <span className="text-muted">95% Confidence</span>
         </div>
       </div>
     </div>

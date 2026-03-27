@@ -9,7 +9,7 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -26,15 +26,15 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
       setTimeout(() => {
         const element = document.getElementById(href.substring(1));
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: 'auto' }); // Remove smooth scroll for a more direct feel
         }
-      }, 100);
+      }, 50);
     }
     setMobileMenuOpen(false);
   };
 
   return (
-    <nav className={`fixed w-full top-[40px] z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full top-0 z-50 transition-colors duration-200 ${isScrolled ? 'bg-background border-b border-white/10 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
         <a 
           href="#" 
@@ -42,27 +42,27 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
             e.preventDefault();
             onGoHome();
           }}
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-4 group"
         >
-          <img src="/MainLogo.png" alt="Michigan Algorithmic Traders" className="h-10 w-10 object-contain" />
+          <img src="/MainLogo.png" alt="MAT" className="h-8 w-8 object-contain" />
+          <span className="text-sm font-mono font-bold tracking-tighter text-white">MAT // RESEARCH</span>
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.name, link.href)}
-              className="px-4 py-2 text-xs font-mono font-medium text-muted hover:text-primary transition-colors uppercase tracking-widest relative group overflow-hidden"
+              className="text-xs font-mono font-medium text-muted hover:text-white transition-colors uppercase tracking-[0.2em]"
             >
-              <span className="relative z-10">{link.name}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              {link.name}
             </a>
           ))}
-          <div className="ml-6 flex items-center gap-6">
-             <Button onClick={onViewResearch} variant="primary" size="sm">
-               Research <BookOpen size={14} className="ml-2" />
+          <div className="ml-4">
+             <Button onClick={onViewResearch} variant="outline" size="sm" className="h-10 px-6">
+               COLLECTIVE <BookOpen size={12} className="ml-2" />
              </Button>
           </div>
         </div>

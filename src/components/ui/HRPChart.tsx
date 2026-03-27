@@ -33,37 +33,37 @@ export const HRPChart = () => {
   }, []);
 
   return (
-    <div className="w-full h-full bg-[#050505] relative overflow-hidden flex items-center justify-center border border-white/5">
-      <div className="absolute top-4 left-5 font-mono text-[9px] text-primary/40 uppercase tracking-[0.4em] z-10">
-        // HRP_RECURSIVE_STRUCTURE
+    <div className="w-full h-full bg-surface relative overflow-hidden flex items-center justify-center border border-white/5">
+      <div className="absolute top-4 left-5 font-mono text-[10px] text-muted uppercase tracking-widest z-10 border-l border-primary/40 pl-3">
+        Recursive Structure // HRP
       </div>
 
       <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full p-12">
         {/* Static, high-contrast tree lines */}
-        <g stroke="white" strokeWidth="2.5" fill="none" opacity="0.8">
+        <g stroke="white" strokeWidth="1.5" fill="none" opacity="0.1">
           {treeData.map((line, i) => (
             <line key={i} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} strokeLinecap="square" />
           ))}
         </g>
 
         {/* Junction nodes */}
-        <g fill="white">
-          <circle cx={width/2} cy={60} r="5" className="fill-primary" />
+        <g fill="white" opacity="0.3">
+          <circle cx={width/2} cy={60} r="3" className="fill-primary" />
           {[width/2-200, width/2+200].forEach((x, i) => (
-            <circle key={i} cx={x} cy={140} r="4" />
+            <circle key={i} cx={x} cy={140} r="2" />
           ))}
         </g>
 
         {/* Terminal Leaf nodes */}
         <g fill="white">
           {[width/2-350, width/2-250, width/2-150, width/2-50, width/2+50, width/2+150, width/2+250, width/2+350].map((x, i) => (
-            <circle key={i} cx={x} cy={height-80} r="6" className="fill-primary" />
+            <circle key={i} cx={x} cy={height-80} r="4" className="fill-primary/60" />
           ))}
         </g>
       </svg>
 
-      <div className="absolute bottom-4 right-6 font-mono text-[8px] text-muted uppercase tracking-widest opacity-30">
-        Static_Asset_Cluster_Map
+      <div className="absolute bottom-4 right-6 font-mono text-[9px] text-muted uppercase tracking-widest opacity-40">
+        Asset Cluster Allocation
       </div>
     </div>
   );

@@ -6,52 +6,68 @@ import { PlexusBackground } from './ui/PlexusBackground';
 
 export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
   return (
-    <div className="relative min-h-screen flex items-center pt-32 overflow-hidden">
-      <PlexusBackground />
-      {/* Dynamic Background Elements */}
+    <div className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-background">
+      {/* Structural Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Animated Orbs */}
-        <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-[10%] left-[5%] w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+        {/* Subtle Grid - static and professional */}
+        <div className="absolute inset-0 opacity-[0.03]" 
+             style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+        </div>
         
-        {/* Grid Overlay */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
-        
-        {/* Tech Lines */}
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
-        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent"></div>
+        {/* Minimalist Accents */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent"></div>
       </div>
 
       <Section className="relative z-10 w-full">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-10">
-            <h1 className="text-5xl md:text-7xl font-bold leading-none tracking-tight">
-              MICHIGAN <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">ALGORITHMIC</span> <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-glow">TRADERS</span>
-            </h1>
+        <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
+          <div className="space-y-12">
+            <div className="inline-flex items-center gap-3 px-3 py-1 border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-widest">
+              <span className="w-2 h-2 bg-primary animate-pulse"></span>
+              Quantitative Research Collective
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter text-white">
+                MICHIGAN <br />
+                ALGORITHMIC <br />
+                <span className="text-primary">TRADERS</span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl text-muted max-w-xl leading-relaxed font-sans">
+                Bridging the gap between <span className="text-white">academic theory</span> and <span className="text-white">live market execution</span> through rigorous strategy reproduction.
+              </p>
+            </div>
             
-            <p className="text-lg md:text-xl text-muted max-w-lg leading-relaxed border-l-2 border-primary/30 pl-6">
-              A quantitative finance and algorithmic trading organization.
-              <span className="text-white"> Research. Build. Compete.</span>
-            </p>
-            
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button onClick={onViewResearch} size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-primary transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-primary/40 group">
-                View Research <BookOpen className="ml-2 group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-wrap gap-6 pt-4">
+              <Button onClick={onViewResearch} size="lg" variant="primary" className="h-16 px-10 text-lg">
+                Explore Research Papers <BookOpen className="ml-2" size={20} />
               </Button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/5 max-w-lg">
+              <div>
+                <div className="text-2xl font-bold text-white">50+</div>
+                <div className="text-xs font-mono uppercase text-muted tracking-wider">Papers Indexed</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-white">12</div>
+                <div className="text-xs font-mono uppercase text-muted tracking-wider">Active Strats</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-white">24/7</div>
+                <div className="text-xs font-mono uppercase text-muted tracking-wider">Live Monitoring</div>
+              </div>
             </div>
           </div>
 
-          <div className="relative">
-            <Terminal />
+          <div className="hidden lg:block relative mt-12">
+             <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-primary/30"></div>
+             <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-primary/30"></div>
+             <Terminal />
           </div>
         </div>
       </Section>
-
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-primary/50">
-        <ChevronDown size={32} />
-      </div>
     </div>
   );
 };

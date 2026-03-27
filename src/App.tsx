@@ -48,10 +48,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-text font-sans selection:bg-primary/30 selection:text-white">
-      <Ticker />
-      <Navbar onViewResearch={handleViewResearch} onGoHome={handleGoHome} />
+      <div className="relative z-[60]">
+        <Ticker />
+      </div>
+      <div className="relative z-50">
+        <Navbar onViewResearch={handleViewResearch} onGoHome={handleGoHome} />
+      </div>
       
-      <main>
+      <main className="pt-[40px]"> {/* Offset for the ticker */}
         {view === 'landing' && (
           <>
             <Hero onViewResearch={handleViewResearch} />
