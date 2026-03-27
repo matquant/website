@@ -1,8 +1,7 @@
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
-import { ChevronDown, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { Terminal } from './ui/Terminal';
-import { PlexusBackground } from './ui/PlexusBackground';
 
 export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
   return (

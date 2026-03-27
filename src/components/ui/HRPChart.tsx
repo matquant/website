@@ -49,7 +49,7 @@ export const HRPChart = () => {
         {/* Junction nodes */}
         <g fill="white" opacity="0.3">
           <circle cx={width/2} cy={60} r="3" className="fill-primary" />
-          {[width/2-200, width/2+200].forEach((x, i) => (
+          {[width/2-200, width/2+200].map((x, i) => (
             <circle key={i} cx={x} cy={140} r="2" />
           ))}
         </g>

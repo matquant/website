@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { ArrowLeft, Download, User } from 'lucide-react';
-import { Button } from './ui/Button';
+import { ArrowLeft, Download } from 'lucide-react';
 import { TradingViewTechnicalAnalysis } from './ui/TerminalWidgets';
 import { BNNChart } from './ui/BNNChart';
 import { HRPChart } from './ui/HRPChart';
@@ -29,27 +28,36 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
         >
           <ArrowLeft size={14} /> Back to Archive
         </button>
-        <div className="flex gap-6">
-          <Button variant="outline" size="sm" className="h-10 px-6 font-mono text-xs">
-            DOWNLOAD PDF
-          </Button>
-        </div>
       </div>
 
       {/* Main Container */}
       <article className="max-w-4xl mx-auto">
         <header className="mb-20">
           <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6 font-mono">Public Archive // 2026</div>
-          <h1 className="text-4xl md:text-7xl font-bold mb-10 tracking-tighter text-white uppercase leading-[0.9]">
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tighter text-white uppercase leading-[0.9]">
             {paper.title}
           </h1>
           
-          <div className="flex items-center gap-8 text-[11px] text-muted font-mono uppercase tracking-widest">
-            <div className="flex items-center gap-2">
-              <span className="text-primary opacity-50">BY:</span> <span>{paper.author}</span>
+          <p className="text-lg text-muted mb-10 font-sans leading-relaxed max-w-2xl border-l border-primary/30 pl-6">
+            {paper.description}
+          </p>
+          
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pt-6 border-t border-white/5">
+            <div className="flex items-center gap-8 text-[11px] text-muted font-mono uppercase tracking-widest">
+              <div className="flex items-center gap-2">
+                <span className="text-primary opacity-50">BY:</span> <span>{paper.author}</span>
+              </div>
             </div>
+            
+            <a 
+              href={paper.pdfUrl || '/papers/placeholder.pdf'} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-primary/40 text-primary font-mono text-xs hover:bg-primary hover:text-black transition-all uppercase tracking-widest"
+            >
+              <Download size={14} /> Download PDF Archive
+            </a>
           </div>
-          <div className="h-px w-24 bg-primary mt-12"></div>
         </header>
 
         {paper.id === 'bnn-meta-labeling-2026' ? (
