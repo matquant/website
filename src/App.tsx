@@ -13,7 +13,7 @@ function App() {
   const [view, setView] = useState<'landing' | 'research' | 'paper'>('landing');
   const [selectedPaperId, setSelectedPaperId] = useState<string | null>(null);
 
-  // Handle deep-linking and back-button
+  // Handle deep-linking, back-button, and SEO Titles
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
@@ -21,10 +21,15 @@ function App() {
         const id = hash.replace('#research/', '');
         setSelectedPaperId(id);
         setView('paper');
+        // Dynamic SEO Title for papers
+        const paperName = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        document.title = `${paperName} | MAT Research Archive`;
       } else if (hash === '#research') {
         setView('research');
+        document.title = "Research Archive | University of Michigan Quant Group (MAT)";
       } else {
         setView('landing');
+        document.title = "MAT | University of Michigan Quantitative Research & Algorithmic Trading";
       }
     };
 

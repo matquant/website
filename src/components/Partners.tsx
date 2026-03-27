@@ -17,8 +17,10 @@ export const Partners = () => {
             >
               <img
                 src={partner.logo}
-                alt={partner.name}
+                alt={`${partner.name} - University of Michigan Quant Partner`}
                 className="h-8 md:h-10 brightness-0 invert"
+                loading="lazy"
+                decoding="async"
               />
             </a>
           ))}

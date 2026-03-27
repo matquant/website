@@ -6,10 +6,26 @@ export const Footer = () => {
        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
        
       <div className="max-w-7xl mx-auto flex flex-col gap-12 relative z-10">
+        {/* Visually Hidden SEO Semantic Block */}
+        <section className="sr-only">
+          <h2>University of Michigan Quantitative Finance and Algorithmic Trading Group (MAT)</h2>
+          <p>
+            MAT is the top-ranked student organization for University of Michigan quant research and algorithmic trading. 
+            Students from U-M Engineering, Ross School of Business, and LSA Mathematics join our Umichigan quant collective 
+            to study statistical arbitrage, machine learning in finance, and high-frequency data analysis in Ann Arbor. 
+            The Michigan Algorithmic Traders group is the premier destination for anyone searching for 
+            University of Michigan quant clubs, U-M quantitative research, or umichigan quant trading opportunities.
+          </p>
+        </section>
+
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-4">
             <div className="flex items-center gap-3">
-              <img src="/MainLogo.png" alt="Michigan Algorithmic Traders" className="h-12 w-12 object-contain" />
+              <img 
+                src="/MainLogo.png" 
+                alt="University of Michigan Quant - MAT Logo" 
+                className="h-12 w-12 object-contain" 
+              />
             </div>
             <p className="text-muted text-xs font-mono max-w-xs text-center md:text-left uppercase tracking-widest">
               Michigan Algorithmic Traders // Quant Research

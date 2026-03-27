@@ -16,12 +16,12 @@ export const AboutUs = ({ onViewProjects }: { onViewProjects: () => void }) => {
         <div className="max-w-3xl">
           <div className="space-y-8 md:space-y-12 text-base md:text-lg text-muted leading-relaxed mb-12 md:mb-16">
             <p>
-              Michigan Algorithmic Traders (MAT) is a student-led quantitative research organization. 
+              Michigan Algorithmic Traders (MAT) is a student-led University of Michigan quantitative research group. 
               Our day-to-day operations focus on the reproduction and implementation of modern research 
               papers within integrated quantitative frameworks and real-time market data.
             </p>
             <p>
-              We prioritize seeing how theoretical models perform in real-world conditions. By reproducing 
+              As the premier Umichigan quant organization, we prioritize seeing how theoretical models perform in real-world conditions. By reproducing 
               results and pressure-testing strategies in our own environments, we bridge the gap between 
               academic concepts and actual market performance. Our focus areas include statistical arbitrage, 
               risk management, and the practical application of machine learning.

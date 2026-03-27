@@ -5,6 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   fullWidth?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  'aria-label'?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
@@ -36,6 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button 
       className={`${baseStyles} ${sizes[size]} ${variants[variant]} ${widthClass} ${roundedClass} ${className}`}
+      aria-label={props['aria-label'] || (typeof children === 'string' ? children : undefined)}
       {...props}
     >
       <span className="relative z-10 flex items-center gap-2">{children}</span>

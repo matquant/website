@@ -19,6 +19,7 @@ export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
       </div>
 
       <Section className="relative z-10 w-full py-20 md:py-32">
+        <h1 className="sr-only">University of Michigan Quantitative Research Group - MAT</h1>
         <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
           <div className="space-y-8 md:space-y-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-primary/20 bg-primary/5 text-primary text-[10px] md:text-xs font-mono uppercase tracking-[0.2em]">

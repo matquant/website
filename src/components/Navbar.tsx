@@ -44,7 +44,11 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
           }}
           className="flex items-center gap-4 group"
         >
-          <img src="/MainLogo.png" alt="MAT" className="h-7 w-7 md:h-8 md:w-8 object-contain" />
+          <img 
+            src="/MainLogo.png" 
+            alt="University of Michigan Quant - MAT Logo" 
+            className="h-7 w-7 md:h-8 md:w-8 object-contain" 
+          />
           <span className="text-xs md:text-sm font-mono font-bold tracking-tighter text-white">MAT // RESEARCH</span>
         </a>
 

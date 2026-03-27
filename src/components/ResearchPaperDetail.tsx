@@ -129,11 +129,13 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
             </div>
             
             <div className="w-full bg-surface border border-white/5 h-[800px] shadow-2xl overflow-hidden relative">
-              <iframe 
-                src={`${paper.pdfUrl || '/papers/placeholder.pdf'}#toolbar=1&navpanes=0&scrollbar=1`} 
-                className="w-full h-full border-none"
-                title={`${paper.title} PDF`}
-              >
+                          <iframe 
+                            src={`${paper.pdfUrl || '/papers/placeholder.pdf'}#toolbar=1&navpanes=0&scrollbar=1`} 
+                            className="w-full h-full border-none"
+                            title={`${paper.title} PDF`}
+                            loading="lazy"
+                          >
+              
                 <div className="p-12 text-center">
                   <p className="text-muted mb-4 font-mono text-xs uppercase tracking-widest">Unable to render PDF viewer in this browser.</p>
                   <a 
