@@ -55,7 +55,7 @@ function App() {
         <Navbar onViewResearch={handleViewResearch} onGoHome={handleGoHome} />
       </div>
       
-      <main className="pt-[40px]"> {/* Offset for the ticker */}
+      <main className="pt-[120px] md:pt-[140px]"> {/* Offset for ticker + navbar */}
         {view === 'landing' && (
           <>
             <Hero onViewResearch={handleViewResearch} />

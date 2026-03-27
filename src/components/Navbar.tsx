@@ -34,7 +34,7 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-colors duration-200 ${isScrolled ? 'bg-background border-b border-white/10 py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed w-full top-[40px] z-50 transition-colors duration-200 ${isScrolled ? 'bg-background border-b border-white/10 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
         <a 
           href="#" 
@@ -44,8 +44,8 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
           }}
           className="flex items-center gap-4 group"
         >
-          <img src="/MainLogo.png" alt="MAT" className="h-8 w-8 object-contain" />
-          <span className="text-sm font-mono font-bold tracking-tighter text-white">MAT // RESEARCH</span>
+          <img src="/MainLogo.png" alt="MAT" className="h-7 w-7 md:h-8 md:w-8 object-contain" />
+          <span className="text-xs md:text-sm font-mono font-bold tracking-tighter text-white">MAT // RESEARCH</span>
         </a>
 
         {/* Desktop Menu */}
@@ -66,6 +66,37 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
              </Button>
           </div>
         </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          className="md:hidden text-white hover:text-primary transition-colors p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-background border-b border-white/10 py-6 px-6 flex flex-col gap-6 shadow-2xl">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              className="text-xs font-mono font-bold text-muted uppercase tracking-[0.3em] py-2 border-b border-white/5"
+              onClick={(e) => handleLinkClick(e, link.name, link.href)}
+            >
+              {link.name}
+            </a>
+          ))}
+          <Button onClick={() => { setMobileMenuOpen(false); onViewResearch(); }} variant="primary" className="h-12 text-xs">
+            VIEW COLLECTIVE
+          </Button>
+        </div>
+      )}
+    </nav>
+  );
+};
 
         {/* Mobile Toggle */}
         <button 

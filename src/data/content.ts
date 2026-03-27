@@ -75,7 +75,7 @@ export const faqs = [
   },
   {
     question: 'What does the club actually do?',
-    answer: 'MAT is a competitive research and trading organization focusing on Statistical Arbitrage, Risk Management, and Machine Learning. We produce high-rigor research papers and algorithmic strategies—standardized to professional formats—which we release publicly or utilize for our own internal trading development.'
+    answer: 'MAT is a competitive research and trading organization focusing on Statistical Arbitrage, Risk Management, and Machine Learning. We produce research papers and algorithmic strategies which we release publicly or utilize for our own internal trading development. Additionally, we participate in annual trading competitions to benchmark our strategies against other teams.'
   },
   {
     question: 'Do you participate in trading competitions?',

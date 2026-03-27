@@ -18,45 +18,30 @@ export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent"></div>
       </div>
 
-      <Section className="relative z-10 w-full">
+      <Section className="relative z-10 w-full py-20 md:py-32">
         <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-12 items-start">
-          <div className="space-y-12">
-            <div className="inline-flex items-center gap-3 px-3 py-1 border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-widest">
-              <span className="w-2 h-2 bg-primary animate-pulse"></span>
-              Quantitative Research Collective
+          <div className="space-y-8 md:space-y-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-primary/20 bg-primary/5 text-primary text-[10px] md:text-xs font-mono uppercase tracking-[0.2em]">
+              <span className="w-1.5 h-1.5 bg-primary animate-pulse"></span>
+              quantitative research group
             </div>
 
-            <div className="space-y-4">
-              <h1 className="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter text-white">
-                MICHIGAN <br />
-                ALGORITHMIC <br />
-                <span className="text-primary">TRADERS</span>
+            <div className="space-y-6">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold leading-[0.85] tracking-tighter text-white uppercase">
+                Michigan <br />
+                Algorithmic <br />
+                <span className="text-primary">Traders</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted max-w-xl leading-relaxed font-sans">
-                Bridging the gap between <span className="text-white">academic theory</span> and <span className="text-white">live market execution</span> through rigorous strategy reproduction.
+              <p className="text-lg md:text-2xl text-muted max-w-xl leading-relaxed font-sans border-l border-primary/20 pl-6">
+                Bridging the gap between academic theory and live market execution through rigorous strategy reproduction.
               </p>
             </div>
             
-            <div className="flex flex-wrap gap-6 pt-4">
-              <Button onClick={onViewResearch} size="lg" variant="primary" className="h-16 px-10 text-lg">
-                Explore Research Papers <BookOpen className="ml-2" size={20} />
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button onClick={onViewResearch} size="lg" variant="primary" className="h-14 md:h-16 px-8 md:px-10 text-base md:text-lg">
+                Explore Research <BookOpen className="ml-2" size={18} />
               </Button>
-            </div>
-
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/5 max-w-lg">
-              <div>
-                <div className="text-2xl font-bold text-white">50+</div>
-                <div className="text-xs font-mono uppercase text-muted tracking-wider">Papers Indexed</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white">12</div>
-                <div className="text-xs font-mono uppercase text-muted tracking-wider">Active Strats</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white">24/7</div>
-                <div className="text-xs font-mono uppercase text-muted tracking-wider">Live Monitoring</div>
-              </div>
             </div>
           </div>
 
