@@ -97,34 +97,3 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
     </nav>
   );
 };
-
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-white hover:text-primary transition-colors"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-b border-white/10 py-4 px-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="text-sm font-mono font-medium text-white py-3 border-b border-white/5 hover:text-primary hover:border-primary/30 transition-all pl-2"
-              onClick={(e) => handleLinkClick(e, link.name, link.href)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <div className="flex flex-col gap-4 mt-2">
-            <Button onClick={() => { setMobileMenuOpen(false); onViewResearch(); }} fullWidth variant="primary">Research</Button>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-};
