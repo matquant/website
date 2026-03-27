@@ -18,7 +18,7 @@ export const FAQ = () => {
             <div className="p-8 border border-white/10 bg-surface">
                <HelpCircle className="text-primary mb-6" size={24} />
                <p className="text-muted text-sm leading-relaxed font-sans">
-                 Can't find the answer you're looking for? Reach out to our research board for specific quantitative inquiries regarding our reproduction methods and data pipelines.
+                 Have specific questions? Reach out to our board at <span className="text-white font-mono">matquant3@gmail.com</span> for inquiries regarding our methods and data pipelines.
                </p>
             </div>
           </div>

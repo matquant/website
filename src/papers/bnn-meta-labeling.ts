@@ -6,6 +6,7 @@ export const bnnMetaLabeling: ResearchPaper = {
   author: "MAT Quant Division",
   description: "Probabilistic filtering of SMA crossovers using BNNs for uncertainty quantification.",
   abstract: "This strategy utilizes a secondary Bayesian Neural Network (BNN) acting as a binary filter to determine trade execution based on probabilistic certainty.",
+  pdfUrl: "/papers/placeholder.pdf",
   content: [
     {
       sectionTitle: "BNN Uncertainty Analysis",
