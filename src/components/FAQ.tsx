@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { faqs } from '../data/content';
 import { Section } from './ui/Section';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -15,12 +15,16 @@ export const FAQ = () => {
               Frequently <br />Asked
             </h2>
             <div className="w-12 h-1 bg-primary mb-12"></div>
-            <div className="p-8 border border-white/10 bg-surface">
-               <HelpCircle className="text-primary mb-6" size={24} />
-               <p className="text-muted text-sm leading-relaxed font-sans">
-                 Have specific questions? Reach out to our board at <span className="text-white font-mono">matquant3@gmail.com</span> for inquiries regarding our methods and data pipelines.
-               </p>
-            </div>
+            <p className="text-muted text-sm leading-relaxed font-sans">
+              Have a question we haven't answered? Email the board at{' '}
+              <a
+                href="mailto:MAT--board@umich.edu"
+                className="text-white border-b border-white/20 hover:border-primary hover:text-primary transition-colors"
+              >
+                MAT--board@umich.edu
+              </a>
+              .
+            </p>
           </div>
         </div>
 
