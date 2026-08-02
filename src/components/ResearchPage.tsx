@@ -2,7 +2,6 @@ import { Card } from './ui/Card';
 import { Terminal, ArrowRight, ArrowLeft } from 'lucide-react';
 import { RESEARCH_PAPERS } from '../data/papers';
 import type { ResearchPaper } from '../data/papers';
-import { BNNChart } from './ui/BNNChart';
 import { HRPChart } from './ui/HRPChart';
 import { useState, useEffect } from 'react';
 
@@ -46,7 +45,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
           </button>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white uppercase">
-            Research <br />Archive
+            ts <br />Research
           </h1>
           <div className="h-1 w-12 bg-primary"></div>
         </div>
@@ -60,11 +59,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                 onClick={() => onSelectPaper(paper.id)}
               >
                 <div className="mb-8 overflow-hidden border border-white/5 aspect-video bg-surface flex items-center justify-center relative">
-                  {paper.id === 'bnn-meta-labeling-2026' ? (
-                    <div className="w-full h-full grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                      <BNNChart />
-                    </div>
-                  ) : paper.id === 'hrp-optimization-2026' ? (
+                  {paper.id === 'hrp-optimization-2026' ? (
                     <div className="w-full h-full grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                       <HRPChart />
                     </div>
