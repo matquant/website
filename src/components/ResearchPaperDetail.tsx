@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { ArrowLeft, Download } from 'lucide-react';
 import { TradingViewTechnicalAnalysis } from './ui/TerminalWidgets';
-import { BNNChart } from './ui/BNNChart';
 import { HRPChart } from './ui/HRPChart';
 import { RESEARCH_PAPERS } from '../data/papers';
 
@@ -61,11 +60,7 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
             </div>
           </header>
 
-          {paper.id === 'bnn-meta-labeling-2026' ? (
-            <div className="mb-20 max-w-3xl mx-auto">
-              <BNNChart />
-            </div>
-          ) : paper.id === 'hrp-optimization-2026' ? (
+          {paper.id === 'hrp-optimization-2026' ? (
             <div className="mb-20 max-w-3xl mx-auto">
               <HRPChart />
             </div>
@@ -102,11 +97,7 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
                     ))}
                   </div>
                   
-                  {section.chartSymbol === 'BNN_VISUAL' ? (
-                    <div className="my-10">
-                      <BNNChart />
-                    </div>
-                  ) : section.chartSymbol === 'HRP_VISUAL' ? (
+                  {section.chartSymbol === 'HRP_VISUAL' ? (
                     <div className="my-10">
                       <HRPChart />
                     </div>
