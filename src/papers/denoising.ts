@@ -2,7 +2,7 @@ import type { ResearchPaper } from '../data/papers';
 
 export const denoising: ResearchPaper = {
   id: "denoising",
-  title: "Denoising",
+  title: "Denoising Covariance Matrices for a Momentum Universe Selection with Machine Learning Asset Allocation",
   author: "MAT Quant Division",
   description: "Denoising financial data.",
   abstract: "This paper explores the application of denoising techniques on financial time series.",
