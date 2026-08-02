@@ -45,7 +45,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
           </button>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white uppercase">
-            ts <br />Research
+            Research
           </h1>
           <div className="h-1 w-12 bg-primary"></div>
         </div>

@@ -23,10 +23,10 @@ function App() {
         setView('paper');
         // Dynamic SEO Title for papers
         const paperName = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        document.title = `${paperName} | MAT ts Research`;
+        document.title = `${paperName} | MAT Research`;
       } else if (hash === '#research') {
         setView('research');
-        document.title = "ts Research | University of Michigan Quant Group (MAT)";
+        document.title = "Research | University of Michigan Quant Group (MAT)";
       } else {
         setView('landing');
         document.title = "MAT | University of Michigan Quantitative Research & Algorithmic Trading";
