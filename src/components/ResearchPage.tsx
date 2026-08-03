@@ -73,7 +73,9 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                 </div>
                 
                 <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors tracking-tight text-white">{paper.title}</h3>
-                <p className="text-muted mb-10 flex-grow leading-relaxed font-sans">{paper.description}</p>
+                {paper.description ? (
+                  <p className="text-muted mb-10 flex-grow leading-relaxed font-sans">{paper.description}</p>
+                ) : <div className="mb-10 flex-grow" />}
 
                 <div className="mt-auto flex items-center gap-3 text-[10px] font-mono font-bold text-primary uppercase tracking-[0.2em]">
                   Read Publication <ArrowRight size={12} />
