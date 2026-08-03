@@ -38,9 +38,11 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
               {paper.title}
             </h1>
             
-            <p className="text-lg text-muted mb-10 font-sans leading-relaxed max-w-2xl border-l border-primary/30 pl-6">
-              {paper.description}
-            </p>
+            {paper.description ? (
+              <p className="text-lg text-muted mb-10 font-sans leading-relaxed max-w-2xl border-l border-primary/30 pl-6">
+                {paper.description}
+              </p>
+            ) : null}
             
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pt-6 border-t border-white/5">
               <div className="flex items-center gap-8 text-[11px] text-muted font-mono uppercase tracking-widest">

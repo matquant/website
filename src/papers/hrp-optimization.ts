@@ -4,7 +4,7 @@ export const hrpOptimization: ResearchPaper = {
   id: "hrp-optimization-2026",
   title: "[IN PROGRESS] Neural Network Based Hierarchical Risk Parity",
   author: "MAT Quant Division",
-  description: "Using Neural Networks to drive Hierarchical Risk Parity for superior portfolio allocation.",
+  description: "",
   abstract: "This paper explores the integration of Neural Networks with the Hierarchical Risk Parity (HRP) approach. Unlike traditional tree-based models, neural architectures provide the cross-sectional complexity needed to capture true alpha before HRP handles the allocation.",
   pdfUrl: "/mat_research_papers/mat_paper.pdf",
   rawHtml: `
