@@ -67,7 +67,7 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-primary/40 text-primary font-mono text-xs hover:bg-primary hover:text-black transition-all uppercase tracking-widest"
               >
-                <Download size={14} /> Download PDF Archive
+                <Download size={14} /> {paper.pdfUrl?.endsWith('.html') ? 'Open Full Interactive App' : 'Download PDF Archive'}
               </a>
             </div>
           </header>
@@ -134,24 +134,24 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
             </div>
           )}
 
-          {/* Full PDF View */}
+          {/* Embedded Viewer (PDF or HTML App) */}
           <div className="mt-32">
-            <div className="w-full bg-surface border border-white/5 h-[800px] shadow-2xl overflow-hidden relative">
+            <div className="w-full bg-surface border border-white/5 h-[850px] shadow-2xl overflow-hidden relative">
               <iframe 
-                src={`${paper.pdfUrl || '/papers/placeholder.pdf'}#toolbar=1&navpanes=0&scrollbar=1`} 
+                src={paper.pdfUrl?.endsWith('.html') ? paper.pdfUrl : `${paper.pdfUrl || '/papers/placeholder.pdf'}#toolbar=1&navpanes=0&scrollbar=1`} 
                 className="w-full h-full border-none"
-                title={`${paper.title} PDF`}
+                title={`${paper.title} Viewer`}
                 loading="lazy"
               >
                 <div className="p-12 text-center">
-                  <p className="text-muted mb-4 font-mono text-xs uppercase tracking-widest">Unable to render PDF viewer in this browser.</p>
+                  <p className="text-muted mb-4 font-mono text-xs uppercase tracking-widest">Unable to render viewer in this browser.</p>
                   <a 
                     href={paper.pdfUrl || '/papers/placeholder.pdf'} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-mono text-xs font-bold uppercase tracking-widest"
                   >
-                    <Download size={14} /> Manual Download
+                    <Download size={14} /> Open Document
                   </a>
                 </div>
               </iframe>
