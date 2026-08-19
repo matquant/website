@@ -180,13 +180,9 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors tracking-tight uppercase">
-                    Proprietary Alpha Models & Execution Systems
+                  <h3 className="text-2xl font-bold text-white mb-8 group-hover:text-primary transition-colors tracking-tight uppercase">
+                    Proprietary Research
                   </h3>
-                  
-                  <p className="text-muted text-sm leading-relaxed font-sans mb-8">
-                    Access internal institutional-grade alpha signals, high-frequency order book microstructure models, options surface engines, and live statistical arbitrage pipelines.
-                  </p>
 
                   <div className="grid grid-cols-2 gap-3 mb-6 font-mono text-[11px]">
                     <div className="p-3 bg-black/40 border border-white/5">
