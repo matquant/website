@@ -72,7 +72,7 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
             </div>
           </header>
 
-          {paper.id === 'hrp-optimization-2026' ? (
+          {paper.id === 'hrp-optimization-2026-08-19' ? (
             <div className="mb-20 max-w-3xl mx-auto">
               <HRPChart />
             </div>
