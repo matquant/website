@@ -35,7 +35,7 @@ export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
               </h1>
               
               <p className="text-lg md:text-2xl text-muted max-w-xl leading-relaxed font-sans border-l border-primary/20 pl-6">
-                Bridging the gap between academic theory and live market execution through rigorous strategy reproduction.
+                From Paper to Portfolio.
               </p>
             </div>
             
