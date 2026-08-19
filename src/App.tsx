@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutUs } from './components/AboutUs';
+import { CollegesBanner } from './components/CollegesBanner';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { Partners } from './components/Partners';
@@ -19,6 +20,10 @@ function App() {
       const hash = window.location.hash;
       if (hash.startsWith('#research/')) {
         const id = hash.replace('#research/', '');
+        if (id === 'alpha-miner') {
+          window.location.href = '/alpha_list.html';
+          return;
+        }
         setSelectedPaperId(id);
         setView('paper');
         // Dynamic SEO Title for papers
@@ -44,6 +49,10 @@ function App() {
   };
 
   const handleSelectPaper = (id: string) => {
+    if (id === 'alpha-miner') {
+      window.location.href = '/alpha_list.html';
+      return;
+    }
     window.location.hash = `research/${id}`;
   };
 
@@ -65,6 +74,7 @@ function App() {
           <>
             <Hero onViewResearch={handleViewResearch} />
             <AboutUs onViewProjects={handleViewResearch} />
+            <CollegesBanner />
             <Partners />
             <FAQ />
           </>

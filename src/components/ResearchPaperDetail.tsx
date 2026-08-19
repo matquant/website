@@ -14,8 +14,12 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
   const isProprietary = PROPRIETARY_PAPERS.some(p => p.id === id);
 
   useEffect(() => {
+    if (paper?.pdfUrl?.endsWith('.html')) {
+      window.location.href = paper.pdfUrl;
+      return;
+    }
     window.scrollTo(0, 0);
-  }, []);
+  }, [paper]);
 
   if (!paper) return <div className="p-20 text-center text-white">Paper not found.</div>;
 

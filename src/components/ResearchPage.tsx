@@ -216,10 +216,16 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
 
             {/* Proprietary Grid */}
             <div className="grid md:grid-cols-2 gap-6">
-              {PROPRIETARY_PAPERS.map((paper, idx) => (
+              {PROPRIETARY_PAPERS.map((paper) => (
                 <div
                   key={paper.id}
-                  onClick={() => onSelectPaper(paper.id)}
+                  onClick={() => {
+                    if (paper.pdfUrl && paper.pdfUrl.endsWith('.html')) {
+                      window.location.href = paper.pdfUrl;
+                    } else {
+                      onSelectPaper(paper.id);
+                    }
+                  }}
                   className="group bg-surface hover:bg-surfaceHighlight border border-white/10 hover:border-primary/40 transition-all p-8 flex flex-col justify-between cursor-pointer"
                 >
                   <div>
@@ -227,9 +233,6 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                     <div className="flex items-center justify-between gap-2 mb-6">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono font-bold uppercase tracking-wider">
                         <Lock size={11} /> PROPRIETARY
-                      </span>
-                      <span className="text-[10px] font-mono text-muted uppercase tracking-widest">
-                        MAT-ALPHA-0{idx + 1}
                       </span>
                     </div>
 
