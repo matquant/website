@@ -16,3 +16,4 @@ export interface ResearchPaper {
 }
 
 export { RESEARCH_PAPERS } from '../papers';
+export { PROPRIETARY_PAPERS } from './proprietaryPapers';

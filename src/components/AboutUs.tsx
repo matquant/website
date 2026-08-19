@@ -29,7 +29,7 @@ export const AboutUs = ({ onViewProjects }: { onViewProjects: () => void }) => {
           </div>
 
           <Button onClick={onViewProjects} variant="outline" className="h-12 md:h-14 px-6 md:px-8 text-xs md:text-sm">
-            View Research Collective <ArrowRight size={14} className="ml-2" />
+            View Research <ArrowRight size={14} className="ml-2" />
           </Button>
         </div>
       </div>

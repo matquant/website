@@ -66,7 +66,7 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
           ))}
           <div className="ml-4">
              <Button onClick={onViewResearch} variant="outline" size="sm" className="h-10 px-6">
-               COLLECTIVE <BookOpen size={12} className="ml-2" />
+               RESEARCH <BookOpen size={12} className="ml-2" />
              </Button>
           </div>
         </div>
@@ -94,7 +94,7 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
             </a>
           ))}
           <Button onClick={() => { setMobileMenuOpen(false); onViewResearch(); }} variant="primary" className="h-12 text-xs">
-            VIEW COLLECTIVE
+            VIEW RESEARCH
           </Button>
         </div>
       )}
