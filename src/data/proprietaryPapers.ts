@@ -5,7 +5,7 @@ export const PROPRIETARY_PAPERS: ResearchPaper[] = [
     id: 'alpha-miner',
     title: 'Alpha Miner',
     author: 'Quantitative Systems',
-    description: 'Formulaic Alpha List featuring 3,626 quantitative alphas with live quality gates, fitness metrics, turnover checks, and in-book tracking.',
+    description: '',
     abstract: 'An interactive quantitative alpha database tracking over 3,600 formulaic alphas across Public, Analyst, Mixed, and Proprietary data sources with live PnL and Sharpe tracking.',
     date: 'August 19, 2026',
     pdfUrl: '/alpha_list.html',

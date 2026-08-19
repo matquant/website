@@ -212,59 +212,41 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
 
             {/* Proprietary Grid */}
             <div className="grid md:grid-cols-2 gap-6">
-              {PROPRIETARY_PAPERS.map((paper) => (
-                <div
-                  key={paper.id}
-                  onClick={() => {
-                    if (paper.pdfUrl && paper.pdfUrl.endsWith('.html')) {
-                      window.location.href = paper.pdfUrl;
-                    } else {
-                      onSelectPaper(paper.id);
-                    }
-                  }}
-                  className="group bg-surface hover:bg-surfaceHighlight border border-white/10 hover:border-primary/40 transition-all p-8 flex flex-col justify-between cursor-pointer"
-                >
-                  <div>
-                    {/* Header tags */}
-                    <div className="flex items-center justify-between gap-2 mb-6">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono font-bold uppercase tracking-wider">
-                        <Lock size={11} /> PROPRIETARY
-                      </span>
+              {PROPRIETARY_PAPERS.map((paper) => {
+                const isHtmlApp = paper.pdfUrl && paper.pdfUrl.endsWith('.html');
+                const CardWrapper = isHtmlApp ? 'a' : 'div';
+                const wrapperProps = isHtmlApp 
+                  ? { href: paper.pdfUrl } 
+                  : { onClick: () => onSelectPaper(paper.id) };
+
+                return (
+                  <CardWrapper
+                    key={paper.id}
+                    {...wrapperProps}
+                    className="group bg-surface hover:bg-surfaceHighlight border border-white/10 hover:border-primary/40 transition-all p-8 flex flex-col justify-between cursor-pointer block"
+                  >
+                    <div>
+                      {/* Header tags */}
+                      <div className="flex items-center justify-between gap-2 mb-6">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono font-bold uppercase tracking-wider">
+                          <Lock size={11} /> PROPRIETARY
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors tracking-tight leading-snug">
+                        {paper.title}
+                      </h3>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors tracking-tight leading-snug">
-                      {paper.title}
-                    </h3>
-
-                    <p className="text-muted text-xs md:text-sm font-sans leading-relaxed mb-6">
-                      {paper.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    {/* Strategy Metrics Bar */}
-                    <div className="grid grid-cols-3 gap-2 py-4 mb-6 border-y border-white/5 font-mono text-[10px]">
-                      <div>
-                        <span className="text-muted/60 block uppercase text-[8px] tracking-wider">Desk</span>
-                        <span className="text-white font-medium truncate block">{paper.author.replace('MAT ', '')}</span>
-                      </div>
-                      <div>
-                        <span className="text-muted/60 block uppercase text-[8px] tracking-wider">Model Status</span>
-                        <span className="text-primary font-medium block">Production</span>
-                      </div>
-                      <div>
-                        <span className="text-muted/60 block uppercase text-[8px] tracking-wider">Access</span>
-                        <span className="text-primary font-medium block">Proprietary</span>
+                    <div>
+                      <div className="flex items-center justify-between text-xs font-mono font-bold text-primary tracking-widest uppercase mt-6 pt-4 border-t border-white/5">
+                        <span>Access Dashboard</span>
+                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
-
-                    <div className="flex items-center justify-between text-xs font-mono font-bold text-primary tracking-widest uppercase">
-                      <span>Inspect Strategy & Brief</span>
-                      <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  </CardWrapper>
+                );
+              })}
             </div>
           </div>
         )}
