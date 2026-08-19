@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Card } from './ui/Card';
-import { Button } from './ui/Button';
 import { 
   Terminal, 
   ArrowRight, 
   ArrowLeft, 
   Lock, 
-  Unlock, 
-  ShieldAlert,
-  ShieldCheck 
+  Unlock 
 } from 'lucide-react';
 import { RESEARCH_PAPERS, PROPRIETARY_PAPERS } from '../data/papers';
 import type { ResearchPaper } from '../data/papers';
@@ -69,15 +66,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
     setActiveTab('proprietary');
   };
 
-  const handleLockSession = () => {
-    try {
-      sessionStorage.removeItem('mat_proprietary_auth');
-    } catch (e) {
-      console.warn('Session storage clear error', e);
-    }
-    setIsAuthenticated(false);
-    setActiveTab('public');
-  };
+
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-4 md:px-8">
@@ -150,7 +139,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                     onClick={() => onSelectPaper(paper.id)}
                   >
                     <div className="mb-8 overflow-hidden border border-white/5 aspect-video bg-surface flex items-center justify-center relative">
-                      {paper.id === 'hrp-optimization-2026' ? (
+                      {paper.id.startsWith('hrp-optimization') ? (
                         <div className="w-full h-full grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                           <HRPChart />
                         </div>

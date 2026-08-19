@@ -4,6 +4,7 @@ export interface ResearchPaper {
   author: string;
   description: string;
   abstract: string;
+  date?: string;
   imageUrl?: string;
   rawHtml?: string;
   pdfUrl?: string; // Added for PDF support

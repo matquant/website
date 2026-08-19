@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Lock, KeyRound, ShieldAlert, Eye, EyeOff, X, ArrowRight } from 'lucide-react';
+import { Lock, KeyRound, Eye, EyeOff, X, ArrowRight } from 'lucide-react';
 import { Button } from './ui/Button';
 
 interface ProprietaryAuthModalProps {
