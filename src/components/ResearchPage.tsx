@@ -223,34 +223,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
         {/* Tab 2: Proprietary Research */}
         {activeTab === 'proprietary' && (
           <div className="space-y-10">
-            {/* Clearance Notification Bar */}
-            <div className="p-6 bg-surface border border-primary/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 text-primary">
-                  <ShieldCheck size={24} />
-                </div>
-                <div>
-                  <div className="text-xs font-mono font-bold text-primary tracking-widest uppercase flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    PROPRIETARY ACCESS VERIFIED
-                  </div>
-                  <div className="text-xs text-muted font-sans mt-0.5">
-                    Viewing proprietary strategies & internal algorithmic research. All rights reserved by Michigan Algorithmic Traders.
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex items-center gap-3">
-                <Button
-                  onClick={handleLockSession}
-                  variant="outline"
-                  size="sm"
-                  className="h-10 text-[11px] font-mono tracking-widest uppercase text-muted hover:text-white"
-                >
-                  <Lock size={12} className="mr-1.5" /> Lock Session
-                </Button>
-              </div>
-            </div>
 
             {/* Proprietary Grid */}
             <div className="grid md:grid-cols-2 gap-6">

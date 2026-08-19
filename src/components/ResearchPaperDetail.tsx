@@ -134,6 +134,30 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
             </div>
           )}
 
+          {/* Full PDF View */}
+          <div className="mt-32">
+            <div className="w-full bg-surface border border-white/5 h-[800px] shadow-2xl overflow-hidden relative">
+              <iframe 
+                src={`${paper.pdfUrl || '/papers/placeholder.pdf'}#toolbar=1&navpanes=0&scrollbar=1`} 
+                className="w-full h-full border-none"
+                title={`${paper.title} PDF`}
+                loading="lazy"
+              >
+                <div className="p-12 text-center">
+                  <p className="text-muted mb-4 font-mono text-xs uppercase tracking-widest">Unable to render PDF viewer in this browser.</p>
+                  <a 
+                    href={paper.pdfUrl || '/papers/placeholder.pdf'} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-mono text-xs font-bold uppercase tracking-widest"
+                  >
+                    <Download size={14} /> Manual Download
+                  </a>
+                </div>
+              </iframe>
+            </div>
+          </div>
+
           <footer className="mt-32 pt-12 border-t border-white/5 text-[10px] text-muted font-mono text-center tracking-widest uppercase">
             MAT Research Lab // {isProprietary ? 'PROPRIETARY' : '2026'}
           </footer>

@@ -8,10 +8,19 @@ interface ProprietaryAuthModalProps {
   onSuccess: () => void;
 }
 
-// Allowed access keys (case-insensitive)
-const VALID_PASSWORDS = [
-  'vientiane12'
+// Allowed access keys hashes (SHA-256 hex)
+const VALID_PASSWORD_HASHES = [
+  '81defdcd49d8029d7c545d008b0d6e6aee51809cfec9ec372418e44da6163b86'
 ];
+
+// Helper to hash password
+const hashPassword = async (password: string) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+};
 
 export const ProprietaryAuthModal: React.FC<ProprietaryAuthModalProps> = ({
   isOpen,
@@ -47,7 +56,7 @@ export const ProprietaryAuthModal: React.FC<ProprietaryAuthModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleanPass = password.trim().toLowerCase();
 
@@ -57,7 +66,9 @@ export const ProprietaryAuthModal: React.FC<ProprietaryAuthModalProps> = ({
       return;
     }
 
-    if (VALID_PASSWORDS.includes(cleanPass)) {
+    const hashedPass = await hashPassword(cleanPass);
+
+    if (VALID_PASSWORD_HASHES.includes(hashedPass)) {
       setError('');
       try {
         sessionStorage.setItem('mat_proprietary_auth', 'true');
@@ -67,7 +78,7 @@ export const ProprietaryAuthModal: React.FC<ProprietaryAuthModalProps> = ({
       onSuccess();
       onClose();
     } else {
-      setError('Incorrect password. Try "vientiane12".');
+      setError('Incorrect password.');
       triggerShake();
     }
   };
@@ -168,11 +179,7 @@ export const ProprietaryAuthModal: React.FC<ProprietaryAuthModalProps> = ({
             ) : null}
           </div>
 
-          {/* Key Hint Box */}
-          <div className="p-3 bg-white/[0.02] border border-white/5 text-[11px] font-mono text-muted flex items-center justify-between">
-            <span className="text-muted/70">Access Password:</span>
-            <span className="text-primary font-bold tracking-wider">vientiane12</span>
-          </div>
+
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
