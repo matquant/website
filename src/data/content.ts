@@ -2,7 +2,6 @@ import { Search, Shield, Cpu, BarChart3, Binary } from 'lucide-react';
 
 export const navLinks = [
   { name: 'About', href: '#about' },
-  { name: 'Colleges', href: '#colleges' },
   { name: 'Research', href: '#research' },
   { name: 'FAQ', href: '#faq' },
 ];
