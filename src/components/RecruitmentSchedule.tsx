@@ -6,10 +6,10 @@ export const RecruitmentSchedule = () => {
       date: 'Sep 08',
       title: 'Mass Meeting',
       time: '6:00 - 7:00 PM',
-      location: 'MI League - Michigan Rm.',
+      location: "Michigan League - 2nd Floor ('Michigan' Room)",
     },
     {
-      date: 'Nov 15',
+      date: 'Sep 15',
       title: 'Application Deadline',
       time: '11:59 PM',
       location: 'Apply on matquant.io',
