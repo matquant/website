@@ -2,7 +2,7 @@ import { Search, Shield, Cpu, BarChart3, Binary } from 'lucide-react';
 
 export const navLinks = [
   { name: 'About', href: '#about' },
-  { name: 'Research', href: '#research' },
+  { name: 'Apply', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfWXQSW0IQnvv18RbIe1GWnwhVJx3xix5KUrA34Brrcw4-W5g/viewform?usp=mail_form_link' },
   { name: 'FAQ', href: '#faq' },
 ];
 

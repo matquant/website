@@ -59,6 +59,8 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
               key={link.name} 
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.name, link.href)}
+              target={link.href.startsWith('#') ? undefined : "_blank"}
+              rel={link.href.startsWith('#') ? undefined : "noopener noreferrer"}
               className="text-xs font-mono font-medium text-muted hover:text-white transition-colors uppercase tracking-[0.2em]"
             >
               {link.name}
@@ -89,6 +91,8 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
               href={link.href}
               className="text-xs font-mono font-bold text-muted uppercase tracking-[0.3em] py-2 border-b border-white/5"
               onClick={(e) => handleLinkClick(e, link.name, link.href)}
+              target={link.href.startsWith('#') ? undefined : "_blank"}
+              rel={link.href.startsWith('#') ? undefined : "noopener noreferrer"}
             >
               {link.name}
             </a>
