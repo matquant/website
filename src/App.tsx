@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
+import { AnnouncementBanner } from './components/AnnouncementBanner';
 import { Hero } from './components/Hero';
 import { AboutUs } from './components/AboutUs';
 import { CollegesBanner } from './components/CollegesBanner';
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-text font-sans selection:bg-primary/30 selection:text-white">
+      <AnnouncementBanner />
       <div className="relative z-[60]">
         <Ticker />
       </div>
@@ -69,7 +71,7 @@ function App() {
         <Navbar onViewResearch={handleViewResearch} onGoHome={handleGoHome} />
       </div>
       
-      <main className="pt-[120px] md:pt-[140px]"> {/* Offset for ticker + navbar */}
+      <main className="pt-[160px] md:pt-[180px]"> {/* Offset for banner + ticker + navbar */}
         {view === 'landing' && (
           <>
             <Hero onViewResearch={handleViewResearch} />

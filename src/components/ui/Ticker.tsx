@@ -42,7 +42,7 @@ export const Ticker = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full z-[100] h-[40px] bg-[#050505] border-b border-white/5" ref={container}>
+    <div className="fixed top-[40px] left-0 w-full z-[100] h-[40px] bg-[#050505] border-b border-white/5" ref={container}>
       {/* Widget will be injected here */}
     </div>
   );

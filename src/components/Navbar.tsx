@@ -34,7 +34,7 @@ export const Navbar = ({ onViewResearch, onGoHome }: { onViewResearch: () => voi
   };
 
   return (
-    <nav className={`fixed w-full top-[40px] z-50 transition-colors duration-200 ${isScrolled ? 'bg-background border-b border-white/10 py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed w-full top-[80px] z-50 transition-colors duration-200 ${isScrolled ? 'bg-background border-b border-white/10 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
         <a 
           href="#" 
