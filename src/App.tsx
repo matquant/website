@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { AboutUs } from './components/AboutUs';
 import { CollegesBanner } from './components/CollegesBanner';
 import { FAQ } from './components/FAQ';
+import { RecruitmentSchedule } from './components/RecruitmentSchedule';
 import { Footer } from './components/Footer';
 import { Partners } from './components/Partners';
 import { Ticker } from './components/ui/Ticker';
@@ -76,6 +77,7 @@ function App() {
           <>
             <Hero onViewResearch={handleViewResearch} />
             <AboutUs onViewProjects={handleViewResearch} />
+            <RecruitmentSchedule />
             <CollegesBanner />
             <Partners />
             <FAQ />
