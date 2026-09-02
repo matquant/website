@@ -3,7 +3,7 @@ import type { ResearchPaper } from '../data/papers';
 export const hrpOptimization: ResearchPaper = {
   id: "hrp-optimization-2026-08-19",
   title: "A Cross Sectional Ranking System Using Neural Networks and Hierarchical Risk Parity",
-  description: "A novel Machine Learning-based trading pipeline using a Neural Network for rank regression and Hierarchical Risk Parity for robust portfolio allocation.",
+  description: "",
   author: "Daniel Paxton",
   date: "August 19, 2026",
   pdfUrl: "/papers/hrp_nn_2026_08_19.pdf",
