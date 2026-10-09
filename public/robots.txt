@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mat-umich.com/sitemap.xml
+Sitemap: https://matquant.io/sitemap.xml

@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Card } from './ui/Card';
-import { 
-  Terminal, 
-  ArrowRight, 
-  ArrowLeft, 
-  Lock, 
-  Unlock 
+import {
+  ArrowRight,
+  ArrowLeft,
+  FileText,
+  Lock,
+  Unlock
 } from 'lucide-react';
 import { RESEARCH_PAPERS, PROPRIETARY_PAPERS } from '../data/papers';
-import type { ResearchPaper } from '../data/papers';
 import { HRPChart } from './ui/HRPChart';
 import { ProprietaryAuthModal } from './ProprietaryAuthModal';
 
 export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) => void }) => {
-  const [dynamicPapers, setDynamicPapers] = useState<ResearchPaper[]>([]);
   const [activeTab, setActiveTab] = useState<'public' | 'proprietary'>('public');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,30 +26,9 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
     } catch (e) {
       console.warn('Session storage read error', e);
     }
-
-    // Attempt to load the auto-indexed papers
-    fetch('/src/data/papers_manifest.json')
-      .then(res => res.json())
-      .then(async (manifest: { id: string, title: string, fileName: string }[]) => {
-        const loaded = await Promise.all(manifest.map(async (p) => {
-          const res = await fetch(`/research_papers/${p.fileName}`);
-          const html = await res.text();
-          return {
-            id: p.id,
-            title: p.title,
-            author: "MAT Research Lab",
-            description: "Automatically indexed publication.",
-            abstract: "External research document.",
-            rawHtml: html,
-            content: []
-          } as ResearchPaper;
-        }));
-        setDynamicPapers(loaded);
-      })
-      .catch(() => console.log("No dynamic papers found."));
   }, []);
 
-  const allPublicPapers = [...dynamicPapers, ...RESEARCH_PAPERS];
+  const allPublicPapers = [...RESEARCH_PAPERS];
 
   const handleProprietaryClick = () => {
     if (isAuthenticated) {
@@ -147,7 +124,7 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                         <img src={paper.imageUrl} alt={paper.title} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-500" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
-                          <Terminal className="text-white/5" size={48} />
+                          <FileText className="text-white/10" size={48} />
                         </div>
                       )}
                     </div>

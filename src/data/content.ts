@@ -1,60 +1,8 @@
-import { Search, Shield, Cpu, BarChart3, Binary } from 'lucide-react';
-
 export const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Apply', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfWXQSW0IQnvv18RbIe1GWnwhVJx3xix5KUrA34Brrcw4-W5g/viewform?usp=mail_form_link' },
   { name: 'FAQ', href: '#faq' },
 ];
-
-export const features = [
-  {
-    title: 'Statistical Arbitrage',
-    description: 'Developing mean-reversion systems and pair-trading models using high-frequency data and cointegration analysis.',
-    icon: Search,
-    color: 'text-blue-400'
-  },
-  {
-    title: 'Machine Learning',
-    description: 'Implementing LSTM and Transformer architectures for non-linear time-series prediction and regime detection.',
-    icon: Binary,
-    color: 'text-green-400'
-  },
-  {
-    title: 'Strategy Reproduction',
-    description: 'Translating academic whitepapers into functional Python code to verify alpha and signal decay in live markets.',
-    icon: Cpu,
-    color: 'text-purple-400'
-  },
-  {
-    title: 'Risk Management',
-    description: 'Utilizing Monte Carlo simulations and Kelly Criterion variants to optimize position sizing and drawdowns.',
-    icon: Shield,
-    color: 'text-yellow-400'
-  },
-  {
-    title: 'Market Microstructure',
-    description: 'Analyzing LOB (Limit Order Book) dynamics to understand liquidity provisioning and execution slippage.',
-    icon: BarChart3,
-    color: 'text-red-400'
-  }
-];
-
-export const testimonials = [
-  {
-    name: 'Academic Advisory',
-    role: 'Quantitative Finance Review',
-    handle: '@mat_research',
-    text: "The Michigan Algorithmic Traders group maintains a high standard of systematic rigor. Their focus on reproduction over 'black-box' promises is a breath of fresh air in the student-run quant space."
-  },
-  {
-    name: 'Alumni Network',
-    role: 'Incoming Quant @ Millennium',
-    handle: '@umich_alumni',
-    text: "Joining MAT was the single most impactful decision of my undergrad. The project-based approach to implementation prepared me for the technical reality of buyside desks."
-  }
-];
-
-export const productCategories = []; // Cleared for publishing
 
 export const partners = [
   {
@@ -67,7 +15,7 @@ export const partners = [
 export const faqs = [
   {
     question: 'How do I join Michigan Algorithmic Traders?',
-    answer: 'We operate on a rolling admissions basis rather than fixed recruitment cycles. Interested students should fill out our application form (linked in the footer) to schedule an interview. We look for candidates who are passionate about quantitative research and demonstrate strong problem-solving skills.'
+    answer: "We are not accepting new members at this time. When recruitment reopens, interested students will be able to apply through the application form, and positions are announced on this page. In the meantime, feel free to reach out to the board at MAT--board@umich.edu with any questions."
   },
   {
     question: 'What technical skills are required?',
