@@ -23,6 +23,47 @@ export const ResearchPaperDetail = ({ id }: PaperDetailProps) => {
 
   if (!paper) return <div className="p-20 text-center text-white">Paper not found.</div>;
 
+  // Immersive scrollable reader: click-through straight to the paper
+  if (paper.reader && paper.pdfUrl && !paper.pdfUrl.endsWith('.html')) {
+    return (
+      <div className="min-h-screen bg-background text-text">
+        {/* Slim reader toolbar */}
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-6 px-4 md:px-8 pt-6 pb-4">
+          <button
+            onClick={() => window.location.hash = 'research'}
+            className="flex items-center gap-2 text-muted hover:text-white transition-colors font-mono text-xs uppercase tracking-widest whitespace-nowrap"
+          >
+            <ArrowLeft size={14} /> Back to Research
+          </button>
+
+          <span className="hidden md:block flex-1 text-center text-[10px] font-mono uppercase tracking-[0.25em] text-muted truncate">
+            {paper.title}
+          </span>
+
+          <a
+            href={paper.pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 border border-primary/40 text-primary font-mono text-xs hover:bg-primary hover:text-black transition-all uppercase tracking-widest whitespace-nowrap"
+          >
+            <Download size={14} /> PDF
+          </a>
+        </div>
+
+        {/* Scrollable paper pane */}
+        <div className="max-w-6xl mx-auto px-4 md:px-8 pb-6">
+          <div className="w-full bg-surface border border-white/10 shadow-2xl overflow-hidden">
+            <iframe
+              src={`${paper.pdfUrl}#toolbar=1&navpanes=0`}
+              className="w-full h-[calc(100vh-200px)] border-none"
+              title={`${paper.title} Reader`}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background text-text pb-20 pt-32 px-4 md:px-8">
       {/* Top Navigation */}

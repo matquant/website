@@ -7,6 +7,7 @@ export const hrpOptimization: ResearchPaper = {
   author: "Daniel Paxton",
   date: "August 19, 2026",
   pdfUrl: "/papers/hrp_nn_2026_08_19.pdf",
+  reader: true,
   abstract: "This paper aims to showcase a novel Machine Learning-based trading pipeline using a Neural Network for rank regression and Hierarchical Risk Parity for robust portfolio allocation. We attempted to use a mean-based target framework with the log-relative returns of the S&P 500 for engineering our main features. This approach aims to isolate idiosyncratic information to utilize as features in our Neural Network.",
   content: [
     {

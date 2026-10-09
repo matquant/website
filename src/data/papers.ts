@@ -8,6 +8,7 @@ export interface ResearchPaper {
   imageUrl?: string;
   rawHtml?: string;
   pdfUrl?: string; // Added for PDF support
+  reader?: boolean; // Render as an immersive scrollable PDF reader
   content: {
     sectionTitle: string;
     paragraphs: string[];
