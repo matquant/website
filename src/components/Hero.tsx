@@ -1,18 +1,28 @@
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
 import { ArrowRight } from 'lucide-react';
+import { WireBackground } from './ui/WireBackground';
 
 export const Hero = ({ onViewResearch }: { onViewResearch: () => void }) => {
   return (
-    <div className="relative min-h-[85vh] flex items-center bg-background">
-      <Section className="w-full py-24 md:py-32">
+    <div className="relative min-h-[90vh] flex items-center overflow-hidden bg-background">
+      <WireBackground />
+
+      <Section className="relative z-10 w-full py-24 md:py-32">
         <h1 className="sr-only">University of Michigan Quantitative Research Group - MAT</h1>
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted mb-10">
+          <img
+            src="/MainLogo.png"
+            alt="Michigan Algorithmic Traders logo"
+            className="h-36 md:h-48 w-auto mx-auto mb-10"
+            style={{ filter: 'drop-shadow(0 0 48px rgba(255, 203, 5, 0.12))' }}
+          />
+
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted mb-8">
             Michigan Algorithmic Traders
           </p>
 
-          <p className="text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-8">
+          <p className="font-display text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight text-white mb-8">
             From paper<br />to portfolio.
           </p>
 

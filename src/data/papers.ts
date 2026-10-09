@@ -9,6 +9,7 @@ export interface ResearchPaper {
   rawHtml?: string;
   pdfUrl?: string; // Added for PDF support
   reader?: boolean; // Render as an immersive scrollable PDF reader
+  thumbnail?: string; // Card image (first page of the PDF)
   content: {
     sectionTitle: string;
     paragraphs: string[];

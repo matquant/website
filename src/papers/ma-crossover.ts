@@ -8,6 +8,7 @@ export const maCrossover: ResearchPaper = {
   abstract: "This project looks at how basic moving average crossovers perform across different stocks. We compare simple moving averages (SMA) to exponential moving averages (EMA) to see which one catches trends faster and which one has fewer false signals.",
   imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Lissage_sinus_bruite_moyenne_glissante.svg/250px-Lissage_sinus_bruite_moyenne_glissante.svg.png",
   pdfUrl: "/papers/placeholder.pdf",
+  thumbnail: "/papers/thumbs/ma-crossover.jpg",
   content: [
     {
       sectionTitle: "Visual Analysis",

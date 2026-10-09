@@ -8,7 +8,6 @@ import {
   Unlock
 } from 'lucide-react';
 import { RESEARCH_PAPERS, PROPRIETARY_PAPERS } from '../data/papers';
-import { HRPChart } from './ui/HRPChart';
 import { ProprietaryAuthModal } from './ProprietaryAuthModal';
 
 export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) => void }) => {
@@ -115,13 +114,14 @@ export const ResearchPage = ({ onSelectPaper }: { onSelectPaper: (id: string) =>
                     className="group p-10 flex flex-col h-full cursor-pointer bg-background hover:bg-surface transition-colors duration-200 border-none"
                     onClick={() => onSelectPaper(paper.id)}
                   >
-                    <div className="mb-8 overflow-hidden border border-white/5 aspect-video bg-surface flex items-center justify-center relative">
-                      {paper.id.startsWith('hrp-optimization') ? (
-                        <div className="w-full h-full grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                          <HRPChart />
-                        </div>
-                      ) : paper.imageUrl ? (
-                        <img src={paper.imageUrl} alt={paper.title} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-500" />
+                    <div className="mb-8 overflow-hidden border border-white/5 aspect-[8.5/11] bg-surface flex items-center justify-center relative">
+                      {paper.thumbnail ? (
+                        <img
+                          src={paper.thumbnail}
+                          alt={`${paper.title} - first page`}
+                          className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                          loading="lazy"
+                        />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
                           <FileText className="text-white/10" size={48} />

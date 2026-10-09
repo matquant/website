@@ -7,6 +7,7 @@ export const denoising: ResearchPaper = {
   description: "Machine learning asset allocation using a denoised covariance matrix with momentum asset selection on an index.",
   abstract: "This research presents a machine learning asset allocation framework utilizing a denoised covariance matrix combined with momentum asset selection across index constituents to enhance signal stability and portfolio performance.",
   pdfUrl: "/mat_research_papers/denoising.pdf",
+  thumbnail: "/papers/thumbs/denoising.jpg",
   rawHtml: `
 <h2 class="text-xl font-bold mb-4 font-sans border-b border-white/10 pb-2">1. Introduction</h2>
 <p class="mb-4 leading-relaxed text-gray-400"><strong>Status: Work In Progress</strong></p>

@@ -4,14 +4,13 @@
 
 @layer base {
   body {
-    @apply bg-background text-text antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    @apply bg-background text-text antialiased font-sans;
     letter-spacing: -0.011em;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tighter;
-    font-feature-settings: "cv02", "cv05", "ss01";
+    @apply font-display;
+    letter-spacing: -0.01em;
   }
 }
 
@@ -19,8 +18,18 @@
   .glass {
     @apply bg-surface/80 border border-white/5;
   }
-  
+
   .glass-hover {
     @apply hover:bg-surface transition-colors duration-200;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

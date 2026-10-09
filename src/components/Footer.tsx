@@ -1,7 +1,7 @@
 
 export const Footer = () => {
   return (
-    <footer className="bg-black py-16 px-4 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-secondary py-16 px-4 border-t border-primary/20 relative overflow-hidden">
        {/* Tech background graphic */}
        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
        

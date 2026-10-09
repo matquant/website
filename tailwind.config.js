@@ -19,8 +19,9 @@ export default {
         border: '#ffffff10',
       },
       fontFamily: {
-        sans: ['Geist', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['Instrument Sans', 'system-ui', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        mono: ['IBM Plex Mono', 'monospace'],
       },
       keyframes: {
         ticker: {
